@@ -14,30 +14,34 @@
 
 ## 3. Directory Architecture & Conventions
 
-Always adhere strictly to this Next.js App Router tree:
+Always adhere strictly to this standard Next.js App Router tree inside `src/`:
 
-portfolio_2026/
-├── app/
-│ ├── projects/[slug]/page.tsx
-│ ├── projects/page.tsx
-│ ├── globals.css # Protected design tokens
-│ ├── layout.tsx
-│ ├── page.tsx
-│ └── providers.tsx # 'use client' theme wrapper (next-themes)
-├── components/
-│ ├── layout/ # Navbar.tsx, Footer.tsx
-│ ├── sections/ # Hero.tsx, TechStack.tsx, Experience.tsx, Projects.tsx
-│ └── ui/ # Button.tsx, ProjectCard.tsx, ThemeToggle.tsx
-├── data/ # Decoupled CMS content (typed TS objects & interfaces)
-│ ├── experience.ts
-│ ├── projects.ts
-│ └── skills.ts
-├── styles/ # SCSS Styling Architecture
-│ ├── \_mixins.scss # Responsive & flex/grid mixins
-│ ├── \_animations.scss # Keyframe animations
-│ └── components/ # Component-specific SCSS files (e.g., \_Hero.module.scss)
+portfolio*2026/
+├── src/
+│ ├── app/
+│ │ ├── projects/[slug]/page.tsx
+│ │ ├── projects/page.tsx
+│ │ ├── globals.css # Protected design tokens
+│ │ ├── layout.tsx
+│ │ ├── page.tsx
+│ │ └── providers.tsx # 'use client' theme wrapper (next-themes)
+│ ├── components/
+│ │ ├── layout/ # Navbar.tsx, Footer.tsx
+│ │ ├── sections/ # Hero.tsx, TechStack.tsx, Experience.tsx, Projects.tsx
+│ │ └── ui/ # Button.tsx, ProjectCard.tsx, ThemeToggle.tsx
+│ ├── data/ # Decoupled CMS content (typed TS objects & interfaces)
+│ │ ├── experience.ts
+│ │ ├── projects.ts
+│ │ └── skills.ts
+│ ├── styles/ # SCSS Styling Architecture
+│ │ ├── \_mixins.scss # Responsive & flex/grid mixins
+│ │ ├── \_animations.scss # Keyframe animations
+│ │ └── components/ # Modular component SCSS files
+│ └── lib/ # utils.ts (cn helper)
 ├── public/ # Static assets (images, documents/CV)
-└── lib/ # utils.ts (cn helper)
+├── CLAUDE.md # Project guidelines
+├── tsconfig.json # Paths alias "@/*": ["./src/_"]
+└── package.json
 
 ## 4. Responsiveness & SEO Optimization
 
@@ -66,3 +70,12 @@ portfolio_2026/
 - **Code Standards & Brevity:** Write modern React 19 / Next.js 15 TypeScript code. Keep logic concise, modular, and DRY without bloated helper functions or unnecessary verbosity.
 - **Documentation & Comments:** Include clear, meaningful inline comments for non-obvious state transitions, dynamic metadata logic, or complex CSS/animation calculations.
 - **Imports:** Always use path aliases starting with `@/` matching `tsconfig.json` (e.g., `@/components/ui/Button`, `@/data/projects`, `@/styles/components/...`).
+
+## 8. Stitch MCP & Visual Design Guidelines
+
+- **Visual Source of Truth:** High-fidelity UI mockups (desktop, mobile, light mode, and dark mode) are hosted on the Stitch MCP canvas.
+- **Pre-Implementation Check:** Before scaffolding or styling any UI primitive (`components/ui/`), layout section (`components/sections/`), or page route (`app/`), use Stitch MCP tools to inspect component structure, responsive behavior, light/dark theme surface mapping, and layout hierarchy.
+- **Viewport Parity:** Strictly follow the mobile-specific and desktop-specific visual designs present in the Stitch canvas:
+  - Mobile: Stacked layouts, responsive typography, 44px+ touch targets, dynamic mobile drawer.
+  - Desktop: Multi-column grids, explicit spacing, inline action buttons.
+- **Accents & Tokens:** Use burnt terracotta (`#D97043`) accents, editorial linen light base, and rich dark surface variables strictly as specified in the Stitch canvas.
