@@ -6,10 +6,11 @@
 - **Build:** `pnpm build`
 - **Start Production:** `pnpm start`
 
-## 2. Protected Foundation Rules (Permission First)
+## 2. Protected Foundation Rules & Design System
 
-- **CSS & Tokens:** `app/globals.css` contains established design tokens and `.dark` mode variables. Do NOT edit CSS variables or design tokens without **asking for explicit permission first**.
-- **Dependencies:** Core packages (`next-themes`, `framer-motion`, `lucide-react`, `clsx`, `tailwind-merge`, and `sass`) are already installed in `package.json`. Do NOT run `pnpm add` or modify `package.json` without **asking for explicit permission first**.
+- **Design System Rules:** Strictly adhere to `DESIGN.md` for all styling, color tokens, and typography. Do not introduce arbitrary inline hex colors or custom utility classes outside those defined in `DESIGN.md`.
+- **CSS & Tokens:** `app/globals.css` contains established design tokens and `.dark` mode variables. Do NOT edit CSS variables or design tokens without asking for explicit permission first.
+- **Dependencies:** Core packages are already installed in `package.json`. Do NOT run `pnpm add` or modify `package.json` without asking for explicit permission first.
 - **Package Manager:** Exclusively use `pnpm` for all script execution.
 
 ## 3. Directory Architecture & Conventions
@@ -71,11 +72,12 @@ portfolio*2026/
 - **Documentation & Comments:** Include clear, meaningful inline comments for non-obvious state transitions, dynamic metadata logic, or complex CSS/animation calculations.
 - **Imports:** Always use path aliases starting with `@/` matching `tsconfig.json` (e.g., `@/components/ui/Button`, `@/data/projects`, `@/styles/components/...`).
 
-## 8. Stitch MCP & Visual Design Guidelines
+## 8. Visual Verification (Stitch MCP)
 
-- **Visual Source of Truth:** High-fidelity UI mockups (desktop, mobile, light mode, and dark mode) are hosted on the Stitch MCP canvas.
-- **Pre-Implementation Check:** Before scaffolding or styling any UI primitive (`components/ui/`), layout section (`components/sections/`), or page route (`app/`), use Stitch MCP tools to inspect component structure, responsive behavior, light/dark theme surface mapping, and layout hierarchy.
-- **Viewport Parity:** Strictly follow the mobile-specific and desktop-specific visual designs present in the Stitch canvas:
-  - Mobile: Stacked layouts, responsive typography, 44px+ touch targets, dynamic mobile drawer.
-  - Desktop: Multi-column grids, explicit spacing, inline action buttons.
-- **Accents & Tokens:** Use burnt terracotta (`#D97043`) accents, editorial linen light base, and rich dark surface variables strictly as specified in the Stitch canvas.
+- **Availability:** Stitch MCP is available for visual layout and component verification.
+- **When to Use:** Invoke Stitch MCP tools _only_ when:
+  - Scaffolding new major sections or complex UI primitives.
+  - Resolving layout or responsiveness ambiguity not fully covered by `DESIGN.md`.
+  - Explicitly asked to verify visual parity against the canvas.
+- **When to Skip:** Skip Stitch MCP for text/data updates, minor bug fixes, backend logic, or standard components fully specified in `DESIGN.md`.
+- **Viewport Constraints:** When inspecting frames, strictly match mobile (`390px` stacked layouts, 44px+ touch targets) and desktop specs.
