@@ -25,7 +25,7 @@ export function Hero({
       aria-label="System Architecture & Engineering introduction"
       className={cn(
         "relative flex flex-col gap-8 pt-4 pb-14 border-b border-border-hairline",
-        className
+        className,
       )}
     >
       {/* Index Tag / Section Indicator */}
@@ -36,7 +36,7 @@ export function Hero({
         className="flex items-center gap-3"
       >
         <span
-          className="w-8 h-[2px] bg-accent inline-block shrink-0"
+          className="w-8 h-0.5 bg-accent inline-block shrink-0"
           aria-hidden="true"
         />
         <span className="font-mono text-xs tracking-[0.15em] text-accent uppercase font-semibold">
@@ -45,7 +45,7 @@ export function Hero({
       </motion.div>
 
       {/* Main Headline & Narrative Copy */}
-      <div className="space-y-4 max-w-[880px]">
+      <div className="space-y-4 max-w-220">
         <motion.h1
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -63,7 +63,7 @@ export function Hero({
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2, ease: [0.25, 1, 0.5, 1] }}
-          className="text-base sm:text-lg text-text-secondary max-w-[720px] leading-relaxed pt-2 font-normal"
+          className="text-base sm:text-lg text-text-secondary max-w-180 leading-relaxed pt-2 font-normal"
         >
           4+ years of experience designing and engineering scalable web
           applications, CRM platforms, and customer engagement solutions across
@@ -88,7 +88,7 @@ export function Hero({
             "hover:bg-accent hover:text-white",
             "active:scale-[0.98]",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface-base",
-            "shadow-sm"
+            "shadow-sm",
           )}
         >
           <span>View Works ({formattedCount})</span>
@@ -108,7 +108,7 @@ export function Hero({
             "hover:border-accent hover:text-accent hover:bg-surface-hover/80",
             "active:scale-[0.98]",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface-base",
-            "shadow-sm"
+            "shadow-sm",
           )}
         >
           <FileText className="h-3.5 w-3.5 text-text-tertiary transition-colors duration-200 group-hover:text-accent" />

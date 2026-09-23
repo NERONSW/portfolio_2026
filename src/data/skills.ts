@@ -1,45 +1,44 @@
-export interface Skill {
-  name: string;
-  category: "frontend" | "backend" | "cloud" | "tools" | "languages";
-  level?: "expert" | "advanced" | "proficient";
-  icon?: string;
-  featured?: boolean;
+export interface TechCategory {
+  title: string;
+  count: string;
+  skills: string[];
 }
 
-export const skills: Skill[] = [
-  // Languages & Core
-  { name: "TypeScript", category: "languages", level: "expert", featured: true },
-  { name: "JavaScript (ESNext)", category: "languages", level: "expert", featured: true },
-  { name: "Python", category: "languages", level: "advanced", featured: false },
-  { name: "SQL", category: "languages", level: "advanced", featured: false },
-  { name: "HTML5 / Semantic Web", category: "languages", level: "expert", featured: false },
-  { name: "CSS3 / Sass", category: "languages", level: "expert", featured: false },
+export const TECH_CATEGORIES: TechCategory[] = [
+  {
+    title: "Frontend Systems",
+    count: "06 items",
+    skills: ["React.js", "Next.js", "TypeScript", "JavaScript (ES6+)", "Tailwind CSS", "Vite"],
+  },
+  {
+    title: "Backend & Runtime",
+    count: "05 items",
+    skills: ["Node.js", "Express.js", "Spring Boot", "REST APIs", "GraphQL"],
+  },
+  {
+    title: "Databases & Storage",
+    count: "05 items",
+    skills: ["PostgreSQL", "MongoDB", "MariaDB", "MySQL", "Redis"],
+  },
+  {
+    title: "Cloud & DevOps",
+    count: "04 items",
+    skills: [
+      "AWS (Lambda, S3, API Gateway, DynamoDB)",
+      "GitHub Actions",
+      "Jenkins",
+      "CI/CD",
+    ],
+  },
+];
 
-  // Frontend
-  { name: "React 19", category: "frontend", level: "expert", featured: true },
-  { name: "Next.js 15 (App Router)", category: "frontend", level: "expert", featured: true },
-  { name: "Tailwind CSS", category: "frontend", level: "expert", featured: true },
-  { name: "Framer Motion", category: "frontend", level: "advanced", featured: true },
-  { name: "Vue.js", category: "frontend", level: "proficient", featured: false },
-  { name: "Design Systems / Tokens", category: "frontend", level: "advanced", featured: true },
-
-  // Backend
-  { name: "Node.js", category: "backend", level: "expert", featured: true },
-  { name: "Fastify / Express", category: "backend", level: "advanced", featured: false },
-  { name: "PostgreSQL", category: "backend", level: "advanced", featured: true },
-  { name: "Redis", category: "backend", level: "advanced", featured: false },
-  { name: "Prisma / Drizzle ORM", category: "backend", level: "advanced", featured: true },
-  { name: "REST & GraphQL APIs", category: "backend", level: "expert", featured: false },
-
-  // Cloud & DevOps
-  { name: "AWS (S3, Lambda, CloudFront)", category: "cloud", level: "advanced", featured: false },
-  { name: "Docker", category: "cloud", level: "advanced", featured: true },
-  { name: "Vercel / Cloudflare Workers", category: "cloud", level: "expert", featured: true },
-  { name: "CI/CD (GitHub Actions)", category: "cloud", level: "advanced", featured: false },
-
-  // Tools & Testing
-  { name: "Git & GitHub", category: "tools", level: "expert", featured: true },
-  { name: "Vitest / Jest", category: "tools", level: "advanced", featured: false },
-  { name: "Playwright", category: "tools", level: "proficient", featured: false },
-  { name: "Figma", category: "tools", level: "proficient", featured: false },
+export const TOOLING_ITEMS = [
+  "Claude Code",
+  "Gemini",
+  "Ollama",
+  "Git",
+  "GitLab",
+  "Bitbucket",
+  "Jira",
+  "Figma",
 ];
