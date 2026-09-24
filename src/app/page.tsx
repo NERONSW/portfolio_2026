@@ -6,6 +6,7 @@ import {
   ExperienceChronicle,
   FeaturedDeployments,
   AcademicCredentials,
+  InitiateTransmission,
 } from "@/components/sections";
 import { FEATURED_DEPLOYMENTS } from "@/data/projects";
 
@@ -32,6 +33,7 @@ export default function Home() {
       <ExperienceChronicle />
       <FeaturedDeployments />
       <AcademicCredentials />
+      <InitiateTransmission />
     </main>
   );
 }
