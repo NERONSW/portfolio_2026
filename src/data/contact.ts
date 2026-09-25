@@ -46,9 +46,9 @@ export const CONTACT_DATA: ContactData = {
     },
     {
       label: "ReadCV",
-      href: "https://read.cv/nipuna",
-      username: "@nipuna",
-      isExternal: true,
+      href: "/Nipuna_Wasala_Resume.pdf",
+      username: "Resume (PDF)",
+      isExternal: false,
     },
   ],
 };

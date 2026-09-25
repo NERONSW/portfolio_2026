@@ -149,9 +149,11 @@
   - **Header Row in Card:** Terracotta bullet indicator (`■`) + category title (`text-xs font-mono font-bold uppercase tracking-wider`) + item count pill (`06 items`, `05 items`, `04 items` in terracotta/muted font).
   - **Pill Flex Wrap:** Flex row wrap container (`flex flex-wrap gap-2 pt-3`).
   - **Tech Stack Pill:** Compact ivory/mocha container (`bg-canvas border border-hairline rounded px-2.5 py-1 text-xs font-mono text-primary`).
-- **AI & Tooling Strip:**
-  - Full-width scrollable or wrapping ticker strip (`bg-surface border border-hairline rounded-md p-3 text-xs font-mono text-secondary`):  
-    `// AI & Tooling // Claude Code · Gemini · Ollama · Git · GitLab · Bitbucket · Jira · Figma`.
+- **AI & Tooling Marquee Strip:**
+  - Full-width continuous linear scrolling marquee (`bg-surface border border-hairline rounded-md p-3 sm:p-3.5 flex items-center gap-3 sm:gap-4 overflow-hidden`):
+    - Static prefix: `// AI & TOOLING //` in Burnt Terracotta (`font-mono text-xs font-semibold text-accent`).
+    - Infinite linear track: `Claude Code · Gemini · Ollama · Git · GitLab · Bitbucket · Jira · Figma` scrolling at 25s loop duration with seamless track duplication and pause-on-hover (`group-hover:[animation-play-state:paused]`).
+    - Edge mask: Soft lateral gradient fade ensuring zero abrupt cutoff against borders.
 
 ### 5.6 Mobile Section 03 // Experience Chronicle
 
@@ -192,11 +194,11 @@
   - **CTA Action Controls (Top Row):**
     - Flexible row layout (`flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-8`).
     - **Primary Button (`INITIATE DISPATCH ↗`):** Burnt Terracotta fill (`bg-accent text-white hover:bg-accent-hover`), bold uppercase monospace text (`font-mono text-sm font-bold`), integrated email copy button, right arrow glyph `↗`, padded with rounded corners (`rounded-xl px-6 py-3`).
-    - **Secondary Button (`↓ VIEW CV / RÉSUMÉ ↗`):** Surface/wireframe fill (`bg-surface border border-hairline hover:bg-surface-elevated text-primary`), monospace text (`font-mono text-sm font-medium`), download arrow `↓` on left and external arrow `↗` on right, matching rounded corners (`rounded-xl px-6 py-3`).
+    - **Secondary Button (`↓ DOWNLOAD RÉSUMÉ ↗`):** Surface/wireframe fill (`bg-surface border border-hairline hover:bg-surface-elevated text-primary`), monospace text (`font-mono text-sm font-medium`), download arrow `↓` on left and external arrow `↗` on right, matching rounded corners (`rounded-xl px-6 py-3`), linking directly to `/Nipuna_Wasala_Resume.pdf`.
   - **Section Divider:** Full-width horizontal hairline divider (`my-6 border-t border-border-hairline`).
   - **Footer Telemetry & Links Bar (Bottom Row):**
     - Responsive layout (`flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono`).
-    - **Left Side — Social Links:** Inline flex list (`flex flex-wrap items-center gap-4 sm:gap-5`) for `GitHub ↗`, `LinkedIn ↗`, `Twitter/X ↗`, and `ReadCV ↗` in monospace muted/secondary text with terracotta hover.
+    - **Left Side — Social Links:** Inline flex list (`flex flex-wrap items-center gap-4 sm:gap-5`) for `GitHub ↗`, `LinkedIn ↗`, `Twitter/X ↗`, and `ReadCV ↗` (pointing directly to `/Nipuna_Wasala_Resume.pdf` with `target="_blank"` and `rel="noopener noreferrer"`) in monospace muted/secondary text with terracotta hover.
     - **Right Side — Live Telemetry Clock:** Real-time clock reading (`flex items-center gap-2 font-mono text-xs text-secondary`) with active pulsing indicator dot in primary accent terracotta (`●`) and format `Melbourne (AEST/AEDT) · HH:mm:ss`.
 
 ---
@@ -360,19 +362,20 @@
       - Text: Bold monospace uppercase text in primary button text color (`font-mono text-sm font-bold uppercase tracking-wider`).
       - Icon: External arrow glyph `↗` aligned right (with quick copy-to-clipboard action icon).
       - Shape: Rounded corners (`rounded-xl` / `rounded-lg`), padded (`px-6 py-3`).
-    - **Secondary Button (`↓ VIEW CV / RÉSUMÉ ↗`):**
+    - **Secondary Button (`↓ DOWNLOAD RÉSUMÉ ↗`):**
       - Fill: Surface/wireframe button background color (`bg-surface hover:bg-surface-elevated`).
       - Text: Theme default text color (`text-primary font-mono text-sm font-medium`).
       - Border: Hairline border using theme border token (`border border-border-hairline hover:border-border-strong`).
       - Icons: Download arrow `↓` (or `⤓`) on the left, external link arrow `↗` on the right.
       - Shape: Matching rounded corners (`rounded-xl`), padded (`px-6 py-3`).
+      - Target: Static resume document (`/Nipuna_Wasala_Resume.pdf`).
   - **Section Divider:**
     - Full-width horizontal hairline divider using theme border color (`my-6 border-t border-border-hairline`).
   - **Footer Telemetry & Links Bar (Bottom Row):**
     - Horizontal space-between layout (`flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono`).
     - **Left Side — Social Links:**
       - Inline horizontal flex list (`flex flex-wrap items-center gap-4 sm:gap-5`).
-      - Items: `GitHub ↗`, `LinkedIn ↗`, `Twitter/X ↗`, `ReadCV ↗`.
+      - Items: `GitHub ↗`, `LinkedIn ↗`, `Twitter/X ↗`, `ReadCV ↗` (pointing to static `/Nipuna_Wasala_Resume.pdf` with `target="_blank"` and `rel="noopener noreferrer"`).
       - Style: Monospace font using theme muted/secondary text color with arrow glyphs (`↗`) and terracotta hover transition.
     - **Right Side — Live Telemetry Clock:**
       - Right-aligned live clock reading (`flex items-center gap-2`).
@@ -480,10 +483,10 @@ Rather than relying on drop shadows, the Warm Mocha Dark Theme establishes visua
    - Headline: `#FDFBF7` bold.
    - Narrative: `#C4B8A5` leading-relaxed.
    - **Primary Dispatch CTA:** Burnt Terracotta fill (`bg-[#D97043] text-white hover:bg-[#BF552B]`), rounded-xl (`rounded-xl px-6 py-3`), bold monospace uppercase text `INITIATE DISPATCH ↗` with integrated copy icon.
-   - **Secondary CTA:** Wireframe surface button (`bg-[#241E19] border border-[#382E27] text-[#FDFBF7] hover:bg-[#2D2520] hover:border-[#4A3E35]`) with rounded corners (`rounded-xl px-6 py-3`), download arrow `↓` on left and external arrow `↗` on right: `↓ VIEW CV / RÉSUMÉ ↗`.
+   - **Secondary CTA:** Wireframe surface button (`bg-[#241E19] border border-[#382E27] text-[#FDFBF7] hover:bg-[#2D2520] hover:border-[#4A3E35]`) with rounded corners (`rounded-xl px-6 py-3`), download arrow `↓` on left and external arrow `↗` on right: `↓ DOWNLOAD RÉSUMÉ ↗`.
    - **Section Divider:** Full-width hairline divider `my-6 border-t border-[#382E27]`.
    - **Footer Telemetry & Links Bar:**
-     - Left: Inline horizontal flex list (`flex items-center gap-5`) for `GitHub ↗`, `LinkedIn ↗`, `Twitter/X ↗`, and `ReadCV ↗` in `#C4B8A5` with `#D97043` hover.
+     - Left: Inline horizontal flex list (`flex items-center gap-5`) for `GitHub ↗`, `LinkedIn ↗`, `Twitter/X ↗`, and `ReadCV ↗` (pointing to static `/Nipuna_Wasala_Resume.pdf`) in `#C4B8A5` with `#D97043` hover.
      - Right: Monospace live digital time readout `#C4B8A5` with active pulsing terracotta indicator (`● Melbourne (AEST/AEDT) · HH:mm:ss`).
 
 9. **Mobile Navigation Drawer (Open State — Dark)**:
@@ -507,9 +510,12 @@ Rather than relying on drop shadows, the Warm Mocha Dark Theme establishes visua
    - Updates every 1000ms using `Intl.DateTimeFormat` configured to timezone `'Australia/Melbourne'` in format `HH:mm:ss`.
    - Visual telemetry: Real-time digital readout string with an active pinging/pulsing beacon dot rendered in Primary Accent (Burnt Terracotta) indicating live operational availability.
 
-3. **Section 06 Action & Telemetry Controls:**
+3. **Section 06 Action & Telemetry Controls (Resource Protocol):**
    - **Primary Dispatch Trigger & Clipboard Fallback:** Clicking `INITIATE DISPATCH ↗` launches user's default email client (`mailto:hello@nipuna.dev`), while the adjacent clipboard trigger copies `hello@nipuna.dev` to the system clipboard with an instant visual state feedback transition.
-   - **Download / Inspect CV:** Provides immediate access to curriculum vitae / résumé document with download and external link cues.
+   - **Download / Inspect Résumé (`↓ DOWNLOAD RÉSUMÉ ↗` & `ReadCV ↗`):**
+     - Both actions link directly to the local static PDF at `/Nipuna_Wasala_Resume.pdf`.
+     - Standard `<a>` anchor tags with `target="_blank"` and `rel="noopener noreferrer"` are utilized (bypassing client-side SPA navigation).
+     - Server header configuration in `next.config.ts` enforces `Content-Disposition: inline` and `Content-Type: application/pdf` for `/:path*.pdf`. This prevents forced file downloads and guarantees native, seamless in-browser PDF viewing in a new tab across modern desktop and mobile browsers.
    - **Inline Social Grid & Hover Matrix:** Compact, non-intrusive horizontal metadata row linking external networks with diagonal arrow glyph transitions.
 
 4. **Accessibility & Reduced Motion:**

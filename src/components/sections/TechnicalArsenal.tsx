@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Cpu } from "lucide-react";
 import { TECH_CATEGORIES, TOOLING_ITEMS } from "@/data/skills";
+import { Marquee } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
 export interface TechnicalArsenalProps {
@@ -86,31 +87,43 @@ export function TechnicalArsenal({ className }: TechnicalArsenalProps) {
         ))}
       </div>
 
-      {/* AI & Tooling Marquee / Strip */}
+      {/* AI & Tooling Continuous Linear Scrolling Marquee */}
       <motion.div
         initial={{ opacity: 0, y: 14 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-40px" }}
         transition={{ duration: 0.45, delay: 0.25, ease: [0.25, 1, 0.5, 1] }}
-        className="mt-6 rounded-md border border-border-hairline bg-surface p-3.5 sm:p-4 transition-colors duration-200 flex flex-wrap items-center gap-x-2.5 gap-y-1.5 font-mono text-xs"
+        className="mt-6 rounded-md border border-border-hairline bg-surface p-3 sm:p-3.5 transition-colors duration-200 flex items-center gap-3 sm:gap-4 overflow-hidden"
       >
-        <span className="font-semibold text-accent tracking-wider uppercase shrink-0">
+        {/* Static Section Prefix */}
+        <span className="font-mono text-xs font-semibold text-accent tracking-wider uppercase shrink-0 select-none pl-1">
           // AI &amp; TOOLING //
         </span>
 
-        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-text-secondary">
-          {TOOLING_ITEMS.map((item, idx) => (
-            <span key={item} className="inline-flex items-center gap-2">
-              <span className="hover:text-text-primary transition-colors duration-150">
-                {item}
-              </span>
-              {idx < TOOLING_ITEMS.length - 1 && (
-                <span className="text-accent select-none" aria-hidden="true">
+        {/* Hairline Divider */}
+        <span
+          className="h-4 w-px bg-border-hairline shrink-0 hidden sm:inline-block"
+          aria-hidden="true"
+        />
+
+        {/* Marquee Track Container with hover pause */}
+        <div className="flex-1 min-w-0 overflow-hidden">
+          <Marquee speed={25} pauseOnHover>
+            {TOOLING_ITEMS.map((item) => (
+              <span
+                key={item}
+                className="inline-flex items-center gap-3 font-mono text-xs text-text-secondary hover:text-text-primary transition-colors duration-150 cursor-default shrink-0"
+              >
+                <span>{item}</span>
+                <span
+                  className="text-accent text-xs select-none shrink-0"
+                  aria-hidden="true"
+                >
                   ·
                 </span>
-              )}
-            </span>
-          ))}
+              </span>
+            ))}
+          </Marquee>
         </div>
       </motion.div>
     </section>

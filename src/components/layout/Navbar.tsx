@@ -8,18 +8,20 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
-  { num: "01", label: "About", href: "#about" },
-  { num: "02", label: "Stack", href: "#stack" },
-  { num: "03", label: "Exp", href: "#experience" },
-  { num: "04", label: "Works", href: "#works" },
-  { num: "05", label: "Academics", href: "#academics" },
-  { num: "06", label: "Contact", href: "#contact" },
+  { num: "01", label: "About", href: "#about", id: "about" },
+  { num: "02", label: "Stack", href: "#stack", id: "stack" },
+  { num: "03", label: "Exp", href: "#experience", id: "experience" },
+  { num: "04", label: "Works", href: "#works", id: "works" },
+  { num: "05", label: "Academics", href: "#academics", id: "academics" },
+  { num: "06", label: "Contact", href: "#contact", id: "contact" },
 ];
 
 export function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
+  const [activeSection, setActiveSection] = React.useState<string>("");
 
+  // Handle header background styling on scroll
   React.useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -27,6 +29,63 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Dynamic Scroll State Sync via IntersectionObserver
+  React.useEffect(() => {
+    // Include hero section plus all nav link target sections
+    const sectionIds = ["hero", ...NAV_LINKS.map((link) => link.id)];
+    const sectionElements = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => Boolean(el));
+
+    if (sectionElements.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            if (id === "hero") {
+              // When user scrolls back to the top/hero, reset active section
+              setActiveSection("");
+            } else {
+              setActiveSection(id);
+            }
+          }
+        });
+      },
+      {
+        root: null,
+        // Trigger when section intersects top-to-middle viewing zone
+        rootMargin: "-20% 0px -55% 0px",
+        threshold: 0,
+      }
+    );
+
+    sectionElements.forEach((el) => observer.observe(el));
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  // Unconditional Click Handler Trigger: always scrolls even if activeSection matches
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    targetId: string
+  ) => {
+    e.preventDefault();
+    setIsOpen(false);
+
+    const element = document.getElementById(targetId);
+    if (element) {
+      // Forceful smooth scroll trigger
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      // Keep URL hash in sync without blocking re-trigger
+      window.history.pushState(null, "", `#${targetId}`);
+      setActiveSection(targetId);
+    }
+  };
 
   const closeMenu = () => setIsOpen(false);
 
@@ -42,16 +101,25 @@ export function Navbar() {
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand / Logo + Status Descriptor */}
         <div className="flex items-center gap-3">
-          <Link
-            href="#"
+          <a
+            href="#hero"
+            onClick={(e) => {
+              e.preventDefault();
+              const heroEl = document.getElementById("hero");
+              if (heroEl) {
+                heroEl.scrollIntoView({ behavior: "smooth", block: "start" });
+                window.history.pushState(null, "", " ");
+                setActiveSection("");
+              }
+            }}
             className="group flex items-center gap-2 font-mono text-xs font-semibold tracking-tight text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
           >
             <span className="text-text-primary transition-colors group-hover:text-accent">
               NW<span className="text-accent">.</span>
             </span>
-          </Link>
+          </a>
 
-          {/* Status Descriptor from Variant 2 Design */}
+          {/* Status Descriptor */}
           <div className="hidden items-center gap-2 border-l border-border-hairline pl-3 font-mono text-[11px] sm:flex text-text-tertiary">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-status-available opacity-60" />
@@ -62,20 +130,35 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* Desktop Navigation Links (01 About, 02 Stack, 03 Exp, 04 Works, 05 Academics, 06 Contact) */}
+        {/* Desktop Navigation Links */}
         <nav className="hidden items-center gap-5 md:flex">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="group flex items-center gap-1 font-mono text-xs uppercase tracking-wider text-text-secondary transition-colors duration-200 hover:text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-            >
-              <span className="text-[10px] text-accent transition-colors group-hover:text-accent">
-                {link.num}
-              </span>
-              <span>{link.label}</span>
-            </Link>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isActive = activeSection === link.id;
+
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.id)}
+                className={cn(
+                  "group flex items-center gap-1 font-mono text-xs uppercase tracking-wider transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
+                  isActive
+                    ? "text-text-primary font-semibold"
+                    : "text-text-secondary hover:text-text-primary"
+                )}
+              >
+                <span
+                  className={cn(
+                    "text-[10px] transition-colors",
+                    isActive ? "text-accent font-bold" : "text-accent"
+                  )}
+                >
+                  {link.num}
+                </span>
+                <span>{link.label}</span>
+              </a>
+            );
+          })}
         </nav>
 
         {/* Theme Toggle Controller */}
@@ -112,22 +195,33 @@ export function Navbar() {
               </div>
 
               <nav className="flex flex-col space-y-1">
-                {NAV_LINKS.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={closeMenu}
-                    className="group flex items-center justify-between rounded-md px-3 py-2.5 font-mono text-xs uppercase tracking-wider text-text-secondary transition-colors hover:bg-surface-hover hover:text-text-primary"
-                  >
-                    <div className="flex items-center gap-2.5">
-                      <span className="text-[10px] text-accent">{link.num}</span>
-                      <span>{link.label}</span>
-                    </div>
-                    <span className="text-border-strong transition-transform group-hover:translate-x-0.5">
-                      →
-                    </span>
-                  </Link>
-                ))}
+                {NAV_LINKS.map((link) => {
+                  const isActive = activeSection === link.id;
+
+                  return (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      onClick={(e) => handleNavClick(e, link.id)}
+                      className={cn(
+                        "group flex items-center justify-between rounded-md px-3 py-2.5 font-mono text-xs uppercase tracking-wider transition-colors hover:bg-surface-hover hover:text-text-primary",
+                        isActive
+                          ? "bg-surface-hover text-text-primary font-semibold"
+                          : "text-text-secondary"
+                      )}
+                    >
+                      <div className="flex items-center gap-2.5">
+                        <span className="text-[10px] text-accent font-bold">
+                          {link.num}
+                        </span>
+                        <span>{link.label}</span>
+                      </div>
+                      <span className="text-border-strong transition-transform group-hover:translate-x-0.5">
+                        →
+                      </span>
+                    </a>
+                  );
+                })}
               </nav>
 
               {/* Status info & dispatch */}

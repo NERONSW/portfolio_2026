@@ -122,7 +122,7 @@ export function InitiateTransmission({ className }: InitiateTransmissionProps) {
             </button>
           </div>
 
-          {/* Secondary Button (↓ VIEW CV / RÉSUMÉ ↗) */}
+          {/* Secondary Button (↓ DOWNLOAD RÉSUMÉ ↗) */}
           <a
             href={CONTACT_DATA.cvUrl}
             target="_blank"
@@ -130,7 +130,7 @@ export function InitiateTransmission({ className }: InitiateTransmissionProps) {
             className="inline-flex items-center justify-center gap-2.5 px-6 py-3 rounded-xl border border-border-hairline bg-surface hover:bg-surface-elevated hover:border-border-strong text-text-primary font-mono text-sm font-medium transition-all duration-200 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent group"
           >
             <ArrowDown className="w-4 h-4 text-text-muted transition-transform duration-200 group-hover:translate-y-0.5" />
-            <span>VIEW CV / RÉSUMÉ</span>
+            <span>DOWNLOAD RÉSUMÉ</span>
             <ArrowUpRight className="w-4 h-4 text-accent transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
         </div>
@@ -142,20 +142,25 @@ export function InitiateTransmission({ className }: InitiateTransmissionProps) {
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-xs font-mono">
           {/* Left Side — Social Links: Inline horizontal flex list */}
           <div className="flex flex-wrap items-center gap-5">
-            {CONTACT_DATA.socials.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center gap-1 text-text-secondary hover:text-accent transition-colors duration-200 font-mono text-xs"
-              >
-                <span>{social.label}</span>
-                <span className="text-text-muted transition-transform duration-200 group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                  ↗
-                </span>
-              </a>
-            ))}
+            {CONTACT_DATA.socials.map((social) => {
+              // Ensure static PDF links render cleanly without triggering direct download
+              const isPdf = social.href.endsWith(".pdf");
+              return (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  {...(isPdf ? { type: "application/pdf" } : {})}
+                  className="group inline-flex items-center gap-1 text-text-secondary hover:text-accent transition-colors duration-200 font-mono text-xs"
+                >
+                  <span>{social.label}</span>
+                  <span className="text-text-muted transition-transform duration-200 group-hover:text-accent group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                    ↗
+                  </span>
+                </a>
+              );
+            })}
           </div>
 
           {/* Right Side — Live Telemetry Clock: Right-aligned with pulsing accent beacon */}
