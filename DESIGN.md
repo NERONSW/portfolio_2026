@@ -194,11 +194,11 @@
   - **CTA Action Controls (Top Row):**
     - Flexible row layout (`flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-8`).
     - **Primary Button (`INITIATE DISPATCH ↗`):** Burnt Terracotta fill (`bg-accent text-white hover:bg-accent-hover`), bold uppercase monospace text (`font-mono text-sm font-bold`), integrated email copy button, right arrow glyph `↗`, padded with rounded corners (`rounded-xl px-6 py-3`).
-    - **Secondary Button (`↓ DOWNLOAD RÉSUMÉ ↗`):** Surface/wireframe fill (`bg-surface border border-hairline hover:bg-surface-elevated text-primary`), monospace text (`font-mono text-sm font-medium`), download arrow `↓` on left and external arrow `↗` on right, matching rounded corners (`rounded-xl px-6 py-3`), linking directly to `/Nipuna_Wasala_Resume.pdf`.
+    - **Secondary Button (`↓ DOWNLOAD RÉSUMÉ ↗`):** Surface/wireframe fill (`bg-surface border border-hairline hover:bg-surface-elevated text-primary`), monospace text (`font-mono text-sm font-medium`), download arrow `↓` on left and external arrow `↗` on right, matching rounded corners (`rounded-xl px-6 py-3`), linking directly to `/resume`.
   - **Section Divider:** Full-width horizontal hairline divider (`my-6 border-t border-border-hairline`).
   - **Footer Telemetry & Links Bar (Bottom Row):**
     - Responsive layout (`flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono`).
-    - **Left Side — Social Links:** Inline flex list (`flex flex-wrap items-center gap-4 sm:gap-5`) for `GitHub ↗`, `LinkedIn ↗`, `Twitter/X ↗`, and `ReadCV ↗` (pointing directly to `/Nipuna_Wasala_Resume.pdf` with `target="_blank"` and `rel="noopener noreferrer"`) in monospace muted/secondary text with terracotta hover.
+    - **Left Side — Social Links:** Inline flex list (`flex flex-wrap items-center gap-4 sm:gap-5`) for `GitHub ↗`, `LinkedIn ↗`, `Twitter/X ↗`, and `ReadCV ↗` (pointing directly to `/resume` with `target="_blank"` and `rel="noopener noreferrer"`) in monospace muted/secondary text with terracotta hover.
     - **Right Side — Live Telemetry Clock:** Real-time clock reading (`flex items-center gap-2 font-mono text-xs text-secondary`) with active pulsing indicator dot in primary accent terracotta (`●`) and format `Melbourne (AEST/AEDT) · HH:mm:ss`.
 
 ---
@@ -483,10 +483,10 @@ Rather than relying on drop shadows, the Warm Mocha Dark Theme establishes visua
    - Headline: `#FDFBF7` bold.
    - Narrative: `#C4B8A5` leading-relaxed.
    - **Primary Dispatch CTA:** Burnt Terracotta fill (`bg-[#D97043] text-white hover:bg-[#BF552B]`), rounded-xl (`rounded-xl px-6 py-3`), bold monospace uppercase text `INITIATE DISPATCH ↗` with integrated copy icon.
-   - **Secondary CTA:** Wireframe surface button (`bg-[#241E19] border border-[#382E27] text-[#FDFBF7] hover:bg-[#2D2520] hover:border-[#4A3E35]`) with rounded corners (`rounded-xl px-6 py-3`), download arrow `↓` on left and external arrow `↗` on right: `↓ DOWNLOAD RÉSUMÉ ↗`.
+   - **Secondary CTA:** Wireframe surface button (`bg-[#241E19] border border-[#382E27] text-[#FDFBF7] hover:bg-[#2D2520] hover:border-[#4A3E35]`) with rounded corners (`rounded-xl px-6 py-3`), download arrow `↓` on left and external arrow `↗` on right: `↓ DOWNLOAD RÉSUMÉ ↗` (pointing to `/resume`).
    - **Section Divider:** Full-width hairline divider `my-6 border-t border-[#382E27]`.
    - **Footer Telemetry & Links Bar:**
-     - Left: Inline horizontal flex list (`flex items-center gap-5`) for `GitHub ↗`, `LinkedIn ↗`, `Twitter/X ↗`, and `ReadCV ↗` (pointing to static `/Nipuna_Wasala_Resume.pdf`) in `#C4B8A5` with `#D97043` hover.
+     - Left: Inline horizontal flex list (`flex items-center gap-5`) for `GitHub ↗`, `LinkedIn ↗`, `Twitter/X ↗`, and `ReadCV ↗` (pointing to `/resume`) in `#C4B8A5` with `#D97043` hover.
      - Right: Monospace live digital time readout `#C4B8A5` with active pulsing terracotta indicator (`● Melbourne (AEST/AEDT) · HH:mm:ss`).
 
 9. **Mobile Navigation Drawer (Open State — Dark)**:
@@ -500,23 +500,45 @@ Rather than relying on drop shadows, the Warm Mocha Dark Theme establishes visua
 
 ## 8. Micro-Interactions, Motion & Technical Scripts
 
-1. **Ambient Spotlight Glows:**
-   - Extremely soft blurred radial gradient ambient blobs positioned fixed or absolute behind the content:
-     - Light Mode: `#EADFCB` at `2% – 4%` opacity, `blur(120px)`.
-     - Dark Mode: `#D97043` & `#2A2118` at `3% – 5%` opacity, `blur(140px)`.
-   - Motion: Subtly drifting on an infinite 25s–30s CSS keyframe loop.
+### 8.1 Ambient Layer & Background Motion (08 // Architectural Environment)
 
-2. **Live Melbourne Clock Script & Active Pulse Beacon:**
-   - Updates every 1000ms using `Intl.DateTimeFormat` configured to timezone `'Australia/Melbourne'` in format `HH:mm:ss`.
-   - Visual telemetry: Real-time digital readout string with an active pinging/pulsing beacon dot rendered in Primary Accent (Burnt Terracotta) indicating live operational availability.
+- **Component:** `src/components/ui/AmbientBackground.tsx` (SCSS: `src/styles/components/_AmbientBackground.module.scss`).
+- **Mount & Stacking Order:** Mounted in root layout (`src/app/layout.tsx`) immediately preceding `<Navbar />` and main content.
+  - Positioning: `fixed inset-0 -z-10 pointer-events-none overflow-hidden select-none` with `aria-hidden="true"`.
+  - Zero layout shift and zero interaction blocking across all cards, buttons, and links.
+- **Organic Drifting Blobs (26s–32s Continuous Keyframe Loops):**
+  - **Blob 1 (Primary Terracotta Accent):** Top-left (`width/height: min(50vw, 550px)`). Radial gradient in `terracotta` (`rgba(217, 112, 67, 0.16)` Light / `rgba(217, 112, 67, 0.18)` Dark) with `blur(90px)`. Drifts on a 26s keyframe cycle with `transform: translate3d(...)` and `scale`.
+  - **Blob 2 (Warm Sand / Walnut Depth):** Mid-right (`width/height: min(55vw, 600px)`). Radial gradient in soft sand (`rgba(196, 184, 165, 0.22)` Light) / deep walnut (`rgba(56, 46, 39, 0.35)` Dark) with `blur(90px)`. Drifts on a 32s keyframe cycle.
+  - **Blob 3 (Lower Horizon Whisper):** Bottom-left (`width/height: min(45vw, 480px)`). Subtle terracotta/coffee accent (`rgba(217, 112, 67, 0.11)` Light / `rgba(45, 37, 32, 0.25)` Dark) with `blur(90px)`. Drifts on a 28s keyframe cycle.
+- **Architectural Grid Overlay:**
+  - 40px × 40px hairline grid pattern overlay (`linear-gradient` with `opacity-[0.04]`–`[0.05]`), masked with a soft radial vignette fade (`radial-gradient(circle at 50% 40%, black 60%, transparent 95%)`) to ground the engineering wireframe aesthetic.
+- **Performance & Accessibility Constraints:**
+  - Full GPU acceleration via `transform: translate3d(x, y, 0)` and `will-change: transform`.
+  - Motion automatically freezes (`animation: none; transform: none;`) when `@media (prefers-reduced-motion: reduce)` is enabled.
 
-3. **Section 06 Action & Telemetry Controls (Resource Protocol):**
-   - **Primary Dispatch Trigger & Clipboard Fallback:** Clicking `INITIATE DISPATCH ↗` launches user's default email client (`mailto:hello@nipuna.dev`), while the adjacent clipboard trigger copies `hello@nipuna.dev` to the system clipboard with an instant visual state feedback transition.
-   - **Download / Inspect Résumé (`↓ DOWNLOAD RÉSUMÉ ↗` & `ReadCV ↗`):**
-     - Both actions link directly to the local static PDF at `/Nipuna_Wasala_Resume.pdf`.
-     - Standard `<a>` anchor tags with `target="_blank"` and `rel="noopener noreferrer"` are utilized (bypassing client-side SPA navigation).
-     - Server header configuration in `next.config.ts` enforces `Content-Disposition: inline` and `Content-Type: application/pdf` for `/:path*.pdf`. This prevents forced file downloads and guarantees native, seamless in-browser PDF viewing in a new tab across modern desktop and mobile browsers.
-   - **Inline Social Grid & Hover Matrix:** Compact, non-intrusive horizontal metadata row linking external networks with diagonal arrow glyph transitions.
+### 8.2 Live Melbourne Clock Script & Active Pulse Beacon
 
-4. **Accessibility & Reduced Motion:**
-   - Wraps marquee animations, pulsing indicators, and ambient glow drifts in `@media (prefers-reduced-motion: reduce)` to disable continuous transforms for sensitive users.
+- Updates every 1000ms using `Intl.DateTimeFormat` configured to timezone `'Australia/Melbourne'` in format `HH:mm:ss`.
+- Visual telemetry: Real-time digital readout string with an active pinging/pulsing beacon dot rendered in Primary Accent (Burnt Terracotta) indicating live operational availability.
+
+### 8.3 Section 06 Action & Telemetry Controls (Resource Protocol)
+
+- **Primary Dispatch Trigger & Clipboard Fallback:** Clicking `INITIATE DISPATCH ↗` launches user's default email client (`mailto:hello@nipuna.dev`), while the adjacent clipboard trigger copies `hello@nipuna.dev` to the system clipboard with an instant visual state feedback transition.
+- **Download / Inspect Résumé (`↓ DOWNLOAD RÉSUMÉ ↗` & `ReadCV ↗`):**
+  - Both actions link directly to the App Router Route Handler at `/resume`.
+  - Standard `<a>` anchor tags with `target="_blank"` and `rel="noopener noreferrer"` are utilized.
+  - The dedicated route handler (`src/app/resume/route.ts`) reads `public/Nipuna_Wasala_Resume.pdf` and returns `NextResponse` with explicit server headers:
+    - `Content-Type: application/pdf`
+    - `Content-Disposition: inline; filename="Nipuna_Wasala_Resume.pdf"`
+    - `Cache-Control: public, max-age=3600, must-revalidate`
+  - This programmatic approach enforces `Content-Disposition: inline` headers across both local development and all production hosting environments (Vercel, AWS, Cloudflare, etc.), guaranteeing native, seamless in-browser PDF viewing in a new tab without unwanted download popups.
+- **Inline Social Grid & Hover Matrix:** Compact, non-intrusive horizontal metadata row linking external networks with diagonal arrow glyph transitions.
+
+### 8.4 Continuous Linear Marquee & Hover Pause
+
+- Integrated marquee track running at 25s loop duration with seamless track duplication and pause-on-hover (`group-hover:[animation-play-state:paused]`).
+- Lateral alpha gradient mask for smooth fading without abrupt edge cutoff.
+
+### 8.5 Accessibility & Reduced Motion
+
+- Wraps marquee animations, pulsing indicators, and ambient glow drifts in `@media (prefers-reduced-motion: reduce)` to disable continuous transforms for sensitive users.

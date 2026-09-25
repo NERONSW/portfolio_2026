@@ -1,0 +1,155 @@
+.ambientContainer {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  overflow: hidden;
+  user-select: none;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  pointer-events: none;
+}
+
+/* Blob 1: Terracotta Primary Accent */
+.blob1 {
+  width: min(50vw, 550px);
+  height: min(50vw, 550px);
+  top: -10%;
+  left: 15%;
+  background: radial-gradient(
+    circle,
+    rgba(217, 112, 67, 0.16) 0%,
+    rgba(217, 112, 67, 0.05) 50%,
+    transparent 75%
+  );
+  animation: floatBlob1 26s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+}
+
+:global(.dark) .blob1 {
+  background: radial-gradient(
+    circle,
+    rgba(217, 112, 67, 0.18) 0%,
+    rgba(217, 112, 67, 0.06) 55%,
+    transparent 80%
+  );
+}
+
+/* Blob 2: Warm Sand / Walnut Depth */
+.blob2 {
+  width: min(55vw, 600px);
+  height: min(55vw, 600px);
+  top: 40%;
+  right: -5%;
+  background: radial-gradient(
+    circle,
+    rgba(196, 184, 165, 0.22) 0%,
+    rgba(220, 212, 199, 0.08) 50%,
+    transparent 75%
+  );
+  animation: floatBlob2 32s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+}
+
+:global(.dark) .blob2 {
+  background: radial-gradient(
+    circle,
+    rgba(56, 46, 39, 0.35) 0%,
+    rgba(36, 30, 25, 0.15) 55%,
+    transparent 80%
+  );
+}
+
+/* Blob 3: Subtle Lower Terracotta / Coffee Depth Whisper */
+.blob3 {
+  width: min(45vw, 480px);
+  height: min(45vw, 480px);
+  bottom: -5%;
+  left: 5%;
+  background: radial-gradient(
+    circle,
+    rgba(217, 112, 67, 0.11) 0%,
+    rgba(196, 184, 165, 0.06) 50%,
+    transparent 75%
+  );
+  animation: floatBlob3 28s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate;
+}
+
+:global(.dark) .blob3 {
+  background: radial-gradient(
+    circle,
+    rgba(217, 112, 67, 0.14) 0%,
+    rgba(45, 37, 32, 0.25) 55%,
+    transparent 80%
+  );
+}
+
+/* Low-opacity Architectural Grid Overlay */
+.gridOverlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, rgba(168, 159, 145, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(168, 159, 145, 0.05) 1px, transparent 1px);
+  mask-image: radial-gradient(circle at 50% 40%, black 60%, transparent 95%);
+  -webkit-mask-image: radial-gradient(circle at 50% 40%, black 60%, transparent 95%);
+}
+
+:global(.dark) .gridOverlay {
+  background-image:
+    linear-gradient(to right, rgba(196, 184, 165, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(196, 184, 165, 0.04) 1px, transparent 1px);
+}
+
+/* Keyframe animations using hardware-accelerated transform3d */
+@keyframes floatBlob1 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(8vw, 12vh, 0) scale(1.08);
+  }
+  100% {
+    transform: translate3d(-6vw, 18vh, 0) scale(0.95);
+  }
+}
+
+@keyframes floatBlob2 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-10vw, -10vh, 0) scale(1.06);
+  }
+  100% {
+    transform: translate3d(-4vw, 14vh, 0) scale(0.94);
+  }
+}
+
+@keyframes floatBlob3 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(12vw, -8vh, 0) scale(1.05);
+  }
+  100% {
+    transform: translate3d(4vw, -16vh, 0) scale(0.96);
+  }
+}
+
+/* Accessibility: freeze motion when reduced motion is preferred */
+@media (prefers-reduced-motion: reduce) {
+  .blob1,
+  .blob2,
+  .blob3 {
+    animation: none;
+    transform: none;
+  }
+}
