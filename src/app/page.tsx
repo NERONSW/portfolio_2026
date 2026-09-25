@@ -26,7 +26,7 @@ export default function Home() {
   const count = FEATURED_DEPLOYMENTS.length || 3;
 
   return (
-    <main className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
       <Hero projectCount={count} />
       <ArchitecturalManifesto />
       <TechnicalArsenal />

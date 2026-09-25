@@ -21,7 +21,7 @@ export const CONTACT_DATA: ContactData = {
   heading: "Let's engineer resilient systems together.",
   subheading:
     "Currently open to senior engineering roles, high-impact distributed architecture contracts, and technical advisory in Melbourne or remote.",
-  cvUrl: "/Nipuna_Wasala_CV.pdf",
+  cvUrl: "/Nipuna_Wasala_Resume.pdf",
   responseWindow: "< 24h reply",
   timezone: "Australia/Melbourne",
   locationLabel: "Melbourne (AEST/AEDT)",

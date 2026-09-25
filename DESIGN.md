@@ -72,13 +72,13 @@
 
 ## 4. Layout Structure & Spacing Rules
 
-- **Max Layout Container:** `max-w-5xl` (`1024px`) or `max-w-6xl` (`1152px`), centered (`mx-auto`).
+- **Max Layout Container:** `max-w-7xl` (`1280px`), centered (`mx-auto`), reducing excessive lateral margins and allowing multi-column cards sufficient horizontal breathing room.
 - **Mobile Viewport Specification (390px Canvas):**
   - Fixed root width: `w-full max-w-[390px] mx-auto` or `w-[390px]` edge-to-edge container without horizontal gutters or side overflow (`overflow-x-hidden`).
   - Viewport Edge Padding: `px-4` to `px-5` (`16px – 20px`), ensuring content cleanly hugs the 390px frame.
   - Touch Target Sizing: Minimum `44px` height (`h-11` to `h-12`) on all interactive buttons and inputs.
 - **Horizontal Viewport Padding:**
-  - Desktop: `px-8` to `px-12` (`32px – 48px`).
+  - Desktop: `px-4 sm:px-6 lg:px-8` (`16px – 32px`).
   - Mobile (390px): `px-4` to `px-5` (`16px – 20px`), perfectly hugging viewport edges with zero lateral overflow.
 - **Vertical Section Rhythm:**
   - Desktop: `py-16` to `py-20` (`64px – 80px`) between numbered sections.
@@ -185,13 +185,19 @@
 ### 5.9 Mobile Section 06 // Initiate Transmission & Local Time
 
 - **Section Heading:** `06 // INITIATE TRANSMISSION` (left) | `< 24h reply` (right).
-- **Dispatch Terminal Box:**
+- **Dispatch Terminal Card:**
+  - Card container: `rounded-2xl` with hairline border using current surface/border theme tokens (`border-border-hairline bg-surface`).
   - Headline: `Let's engineer resilient systems together.` (`text-xl font-bold`).
-  - Availability statement: `Open to senior engineering roles, high-impact cloud contracts, and distributed architecture advisory.`
-  - **Primary Action:** Full-width Burnt Terracotta button `INITIATE DISPATCH ↗ (hello@nipuna.dev)` with copy icon.
-  - **Secondary Action:** Full-width ivory/surface button `VIEW CV / RÉSUMÉ ⤓`.
-  - **Social Links Grid:** 2-column grid (`grid grid-cols-2 gap-2 mt-3`) for `GitHub ↗` and `LinkedIn ↗`.
-  - **Live Melbourne Clock Bar:** Real-time pulsing green dot with Melbourne AEST/AEDT digital readout (`● Melbourne (AEST/AEDT) · HH:mm:ss`).
+  - Availability statement: `Currently open to senior engineering roles, high-impact distributed architecture contracts, and technical advisory in Melbourne or remote.` (`text-xs text-secondary leading-relaxed`).
+  - **CTA Action Controls (Top Row):**
+    - Flexible row layout (`flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-8`).
+    - **Primary Button (`INITIATE DISPATCH ↗`):** Burnt Terracotta fill (`bg-accent text-white hover:bg-accent-hover`), bold uppercase monospace text (`font-mono text-sm font-bold`), integrated email copy button, right arrow glyph `↗`, padded with rounded corners (`rounded-xl px-6 py-3`).
+    - **Secondary Button (`↓ VIEW CV / RÉSUMÉ ↗`):** Surface/wireframe fill (`bg-surface border border-hairline hover:bg-surface-elevated text-primary`), monospace text (`font-mono text-sm font-medium`), download arrow `↓` on left and external arrow `↗` on right, matching rounded corners (`rounded-xl px-6 py-3`).
+  - **Section Divider:** Full-width horizontal hairline divider (`my-6 border-t border-border-hairline`).
+  - **Footer Telemetry & Links Bar (Bottom Row):**
+    - Responsive layout (`flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono`).
+    - **Left Side — Social Links:** Inline flex list (`flex flex-wrap items-center gap-4 sm:gap-5`) for `GitHub ↗`, `LinkedIn ↗`, `Twitter/X ↗`, and `ReadCV ↗` in monospace muted/secondary text with terracotta hover.
+    - **Right Side — Live Telemetry Clock:** Real-time clock reading (`flex items-center gap-2 font-mono text-xs text-secondary`) with active pulsing indicator dot in primary accent terracotta (`●`) and format `Melbourne (AEST/AEDT) · HH:mm:ss`.
 
 ---
 
@@ -344,18 +350,34 @@
 
 - **Section Heading:** `06 // INITIATE TRANSMISSION` (Left) | `Response Window < 24h` (Right).
 - **Dispatch Terminal Card:**
-  - Headline: `Let's engineer resilient systems together.`
-  - Subhead: `Currently open to senior engineering roles, high-impact distributed architecture contracts, and technical advisory in Melbourne or remote.`
-  - **Action Controls:**
-    - **Primary Button:** `INITIATE DISPATCH ↗` (`mailto:hello@nipuna.dev` or direct dispatch trigger in terracotta).
-    - **Secondary Button:** `VIEW CV / RÉSUMÉ ⤓`
-  - **Social Links Grid:**
-    - `GitHub ↗`
-    - `LinkedIn ↗`
-    - `Twitter/X ↗`
-    - `ReadCV ↗`
-  - **Live Telemetry Bar:**
-    - Live active local clock: `● Melbourne (AEST/AEDT) · 20:35:42` (live pulsing green dot with real-time JS second updater).
+  - Card container: Rounded corners (`rounded-2xl`) and hairline border using theme tokens (`border-border-hairline bg-surface`).
+  - Headline: `Let's engineer resilient systems together.` (`text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-primary`).
+  - Subhead: `Currently open to senior engineering roles, high-impact distributed architecture contracts, and technical advisory in Melbourne or remote.` (`text-sm sm:text-base text-secondary leading-relaxed`).
+  - **CTA Action Controls (Top Row):**
+    - Horizontal flex layout (`flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-8`).
+    - **Primary Button (`INITIATE DISPATCH ↗`):**
+      - Fill: Primary Accent color (Burnt Terracotta `#D97043` / `bg-accent text-white hover:bg-accent-hover`).
+      - Text: Bold monospace uppercase text in primary button text color (`font-mono text-sm font-bold uppercase tracking-wider`).
+      - Icon: External arrow glyph `↗` aligned right (with quick copy-to-clipboard action icon).
+      - Shape: Rounded corners (`rounded-xl` / `rounded-lg`), padded (`px-6 py-3`).
+    - **Secondary Button (`↓ VIEW CV / RÉSUMÉ ↗`):**
+      - Fill: Surface/wireframe button background color (`bg-surface hover:bg-surface-elevated`).
+      - Text: Theme default text color (`text-primary font-mono text-sm font-medium`).
+      - Border: Hairline border using theme border token (`border border-border-hairline hover:border-border-strong`).
+      - Icons: Download arrow `↓` (or `⤓`) on the left, external link arrow `↗` on the right.
+      - Shape: Matching rounded corners (`rounded-xl`), padded (`px-6 py-3`).
+  - **Section Divider:**
+    - Full-width horizontal hairline divider using theme border color (`my-6 border-t border-border-hairline`).
+  - **Footer Telemetry & Links Bar (Bottom Row):**
+    - Horizontal space-between layout (`flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono`).
+    - **Left Side — Social Links:**
+      - Inline horizontal flex list (`flex flex-wrap items-center gap-4 sm:gap-5`).
+      - Items: `GitHub ↗`, `LinkedIn ↗`, `Twitter/X ↗`, `ReadCV ↗`.
+      - Style: Monospace font using theme muted/secondary text color with arrow glyphs (`↗`) and terracotta hover transition.
+    - **Right Side — Live Telemetry Clock:**
+      - Right-aligned live clock reading (`flex items-center gap-2`).
+      - Beacon: Active pulsing indicator dot using primary accent color (`●` in Burnt Terracotta).
+      - Readout format: `Melbourne (AEST/AEDT) · HH:mm:ss`.
 
 ---
 
@@ -454,13 +476,15 @@ Rather than relying on drop shadows, the Warm Mocha Dark Theme establishes visua
    - Institution & Year: Muted Sand `#8C827A` and `#C4B8A5`.
 
 8. **Section 06 // Initiate Transmission & Terminal Box (Dark)**:
-   - Card container: `#241E19` with hairline Walnut border `#382E27`.
+   - Card container: `#241E19` with hairline Walnut border `#382E27` and rounded corners (`rounded-2xl`).
    - Headline: `#FDFBF7` bold.
    - Narrative: `#C4B8A5` leading-relaxed.
-   - **Primary Dispatch CTA:** Burnt Terracotta fill (`bg-[#D97043] text-white hover:bg-[#BF552B]`), rounded-md, `INITIATE DISPATCH ↗ (hello@nipuna.dev)` with copy icon.
-   - **Secondary CTA:** Wireframe surface button (`bg-[#241E19] border border-[#382E27] text-[#FDFBF7] hover:border-[#4A3E35]`) `VIEW CV / RÉSUMÉ ⤓`.
-   - **Social Grid:** Cards with `#1C1613` / `#241E19` fill, `#382E27` border, `#FDFBF7` text, and terracotta arrow glyphs (`↗`).
-   - **Live Melbourne Clock Telemetry Bar:** Monospace live digital time readout `#C4B8A5` with pulsing green beacon (`● Melbourne (AEST/AEDT) · HH:mm:ss`).
+   - **Primary Dispatch CTA:** Burnt Terracotta fill (`bg-[#D97043] text-white hover:bg-[#BF552B]`), rounded-xl (`rounded-xl px-6 py-3`), bold monospace uppercase text `INITIATE DISPATCH ↗` with integrated copy icon.
+   - **Secondary CTA:** Wireframe surface button (`bg-[#241E19] border border-[#382E27] text-[#FDFBF7] hover:bg-[#2D2520] hover:border-[#4A3E35]`) with rounded corners (`rounded-xl px-6 py-3`), download arrow `↓` on left and external arrow `↗` on right: `↓ VIEW CV / RÉSUMÉ ↗`.
+   - **Section Divider:** Full-width hairline divider `my-6 border-t border-[#382E27]`.
+   - **Footer Telemetry & Links Bar:**
+     - Left: Inline horizontal flex list (`flex items-center gap-5`) for `GitHub ↗`, `LinkedIn ↗`, `Twitter/X ↗`, and `ReadCV ↗` in `#C4B8A5` with `#D97043` hover.
+     - Right: Monospace live digital time readout `#C4B8A5` with active pulsing terracotta indicator (`● Melbourne (AEST/AEDT) · HH:mm:ss`).
 
 9. **Mobile Navigation Drawer (Open State — Dark)**:
    - Overlay surface: `bg-[#241E19]/98` or `bg-[#1C1613]/98` with `backdrop-blur-xl`, border-b `#382E27`, shadow-2xl.
@@ -479,8 +503,14 @@ Rather than relying on drop shadows, the Warm Mocha Dark Theme establishes visua
      - Dark Mode: `#D97043` & `#2A2118` at `3% – 5%` opacity, `blur(140px)`.
    - Motion: Subtly drifting on an infinite 25s–30s CSS keyframe loop.
 
-2. **Live Melbourne Clock Script:**
+2. **Live Melbourne Clock Script & Active Pulse Beacon:**
    - Updates every 1000ms using `Intl.DateTimeFormat` configured to timezone `'Australia/Melbourne'` in format `HH:mm:ss`.
+   - Visual telemetry: Real-time digital readout string with an active pinging/pulsing beacon dot rendered in Primary Accent (Burnt Terracotta) indicating live operational availability.
 
-3. **Accessibility & Reduced Motion:**
-   - Wraps marquee animations and ambient glow drifts in `@media (prefers-reduced-motion: reduce)` to disable continuous transforms for sensitive users.
+3. **Section 06 Action & Telemetry Controls:**
+   - **Primary Dispatch Trigger & Clipboard Fallback:** Clicking `INITIATE DISPATCH ↗` launches user's default email client (`mailto:hello@nipuna.dev`), while the adjacent clipboard trigger copies `hello@nipuna.dev` to the system clipboard with an instant visual state feedback transition.
+   - **Download / Inspect CV:** Provides immediate access to curriculum vitae / résumé document with download and external link cues.
+   - **Inline Social Grid & Hover Matrix:** Compact, non-intrusive horizontal metadata row linking external networks with diagonal arrow glyph transitions.
+
+4. **Accessibility & Reduced Motion:**
+   - Wraps marquee animations, pulsing indicators, and ambient glow drifts in `@media (prefers-reduced-motion: reduce)` to disable continuous transforms for sensitive users.

@@ -61,7 +61,7 @@ export function TechnicalArsenal({ className }: TechnicalArsenalProps) {
                   >
                     ■
                   </span>
-                  <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-text-primary truncate">
+                  <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-text-primary whitespace-nowrap">
                     {category.title}
                   </h3>
                 </div>
