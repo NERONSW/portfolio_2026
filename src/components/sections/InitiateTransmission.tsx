@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion } from "framer-motion";
-import { Radio, ArrowUpRight, ArrowDown, Copy, Check } from "lucide-react";
+import { Radio, ArrowUpRight, Download, Copy, Check } from "lucide-react";
 import { CONTACT_DATA } from "@/data/contact";
 import { cn } from "@/lib/utils";
 
@@ -37,7 +37,9 @@ export function InitiateTransmission({ className }: InitiateTransmissionProps) {
     return () => clearInterval(interval);
   }, []);
 
-  const handleCopyEmail = async (e: React.MouseEvent) => {
+  const handleCopyEmail = async (
+    e: React.MouseEvent<HTMLElement>,
+  ): Promise<void> => {
     e.preventDefault();
     e.stopPropagation();
     try {
@@ -122,16 +124,14 @@ export function InitiateTransmission({ className }: InitiateTransmissionProps) {
             </button>
           </div>
 
-          {/* Secondary Button (↓ DOWNLOAD RÉSUMÉ ↗) */}
+          {/* Secondary Button (↓ DOWNLOAD RÉSUMÉ) */}
           <a
             href={CONTACT_DATA.cvUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+            download="Nipuna_Wasala_Resume.pdf"
             className="inline-flex items-center justify-center gap-2.5 px-6 py-3 rounded-xl border border-border-hairline bg-surface hover:bg-surface-elevated hover:border-border-strong text-text-primary font-mono text-sm font-medium transition-all duration-200 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent group"
           >
-            <ArrowDown className="w-4 h-4 text-text-muted transition-transform duration-200 group-hover:translate-y-0.5" />
+            <Download className="w-4 h-4 text-text-muted transition-transform duration-200 group-hover:translate-y-0.5" />
             <span>DOWNLOAD RÉSUMÉ</span>
-            <ArrowUpRight className="w-4 h-4 text-accent transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
         </div>
 

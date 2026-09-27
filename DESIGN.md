@@ -502,19 +502,20 @@ Rather than relying on drop shadows, the Warm Mocha Dark Theme establishes visua
 
 ### 8.1 Ambient Layer & Background Motion (08 // Architectural Environment)
 
-- **Component:** `src/components/ui/AmbientBackground.tsx` (SCSS: `src/styles/components/_AmbientBackground.module.scss`).
+- **Component:** `src/components/ui/AmbientBackground.tsx` — a `"use client"` HTML5 `<canvas>` particle engine (no SCSS module; the canvas draws directly).
 - **Mount & Stacking Order:** Mounted in root layout (`src/app/layout.tsx`) immediately preceding `<Navbar />` and main content.
-  - Positioning: `fixed inset-0 -z-10 pointer-events-none overflow-hidden select-none` with `aria-hidden="true"`.
+  - Positioning: `fixed inset-0 -z-10 pointer-events-none overflow-hidden` with `aria-hidden="true"`.
   - Zero layout shift and zero interaction blocking across all cards, buttons, and links.
-- **Organic Drifting Blobs (26s–32s Continuous Keyframe Loops):**
-  - **Blob 1 (Primary Terracotta Accent):** Top-left (`width/height: min(50vw, 550px)`). Radial gradient in `terracotta` (`rgba(217, 112, 67, 0.16)` Light / `rgba(217, 112, 67, 0.18)` Dark) with `blur(90px)`. Drifts on a 26s keyframe cycle with `transform: translate3d(...)` and `scale`.
-  - **Blob 2 (Warm Sand / Walnut Depth):** Mid-right (`width/height: min(55vw, 600px)`). Radial gradient in soft sand (`rgba(196, 184, 165, 0.22)` Light) / deep walnut (`rgba(56, 46, 39, 0.35)` Dark) with `blur(90px)`. Drifts on a 32s keyframe cycle.
-  - **Blob 3 (Lower Horizon Whisper):** Bottom-left (`width/height: min(45vw, 480px)`). Subtle terracotta/coffee accent (`rgba(217, 112, 67, 0.11)` Light / `rgba(45, 37, 32, 0.25)` Dark) with `blur(90px)`. Drifts on a 28s keyframe cycle.
-- **Architectural Grid Overlay:**
-  - 40px × 40px hairline grid pattern overlay (`linear-gradient` with `opacity-[0.04]`–`[0.05]`), masked with a soft radial vignette fade (`radial-gradient(circle at 50% 40%, black 60%, transparent 95%)`) to ground the engineering wireframe aesthetic.
-- **Performance & Accessibility Constraints:**
-  - Full GPU acceleration via `transform: translate3d(x, y, 0)` and `will-change: transform`.
-  - Motion automatically freezes (`animation: none; transform: none;`) when `@media (prefers-reduced-motion: reduce)` is enabled.
+- **Particle Field (60–80 motes, `requestAnimationFrame` loop):**
+  - ~70 particles, each carrying state `{ x, y, radius, opacity, targetOpacity, speedX, speedY, twinkleSpeed, twinklePhase, colorIndex }`.
+  - **Light (Warm Editorial) — falling snow / paper dust:** Deep charcoal `#221C18`, walnut `#382E27`, terracotta ink `#8C3D2B`, and espresso `#4A3B32` motes at `1.4px–3.4px` radius and `0.25–0.65` opacity, falling gently downward (`speedY +0.15…+0.35`, `speedX ±0.15`) with a breathing opacity pulse.
+  - **Dark (Roasted Mocha) — rising embers:** Glowing cream `#F5E6D3`, terracotta `#D97043`, amber `#E6A15C`, and warm white `#FFF8F0` embers at `1.2px–3.0px` radius and `0.30–0.85` opacity, rising upward (`speedY −0.35…−0.15`, `speedX ±0.15`) with an active twinkle, plus a soft radial terracotta glow (`rgba(217, 112, 67, 0.12)`).
+  - **Edge Wrapping:** Directional — light motes re-enter from the top (falling down) and dark embers from the bottom (rising up), each with a randomized `x` so the field never bunches or flickers.
+- **Theme Awareness:** A `MutationObserver` watches the `.dark` class on `<html>` (driven by `next-themes`) and re-tints + reverses the vertical velocity of the field in place on theme toggle — no remount, no flicker.
+- **Performance & Accessibility:**
+  - High-DPI / Retina sharpness with `devicePixelRatio` scaling (capped at `2`), and `resize` re-scaling of canvas dimensions.
+  - The loop pauses when `document.hidden` to avoid idle CPU/battery drain.
+  - Under `@media (prefers-reduced-motion: reduce)`, the loop freezes and renders a single static frame.
 
 ### 8.2 Live Melbourne Clock Script & Active Pulse Beacon
 
