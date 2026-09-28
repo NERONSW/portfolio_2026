@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import {
   Hero,
   ArchitecturalManifesto,
@@ -9,18 +8,6 @@ import {
   InitiateTransmission,
 } from "@/components/sections";
 import { FEATURED_DEPLOYMENTS } from "@/data/projects";
-
-export const metadata: Metadata = {
-  title: "Nipuna Wasala — Full-Stack Software Engineer",
-  description:
-    "Full-Stack Software Engineer specializing in scalable web platforms, distributed systems, and architectural clarity across FinTech, MarTech, and CMS domains.",
-  openGraph: {
-    title: "Nipuna Wasala — Full-Stack Software Engineer",
-    description:
-      "Full-Stack Software Engineer specializing in scalable web platforms & distributed systems.",
-    type: "website",
-  },
-};
 
 export default function Home() {
   const count = FEATURED_DEPLOYMENTS.length || 3;
