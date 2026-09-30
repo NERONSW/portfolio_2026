@@ -19,6 +19,16 @@ export function Hero({
 }: HeroProps) {
   const formattedCount = String(projectCount).padStart(2, "0");
 
+  // Programmatic scroll handler that bypasses hash-matching checks
+  const handleScrollToWorks = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const worksSection = document.getElementById("works");
+    if (worksSection) {
+      worksSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.history.pushState(null, "", "#works");
+    }
+  };
+
   return (
     <section
       id="hero"
@@ -81,6 +91,7 @@ export function Hero({
         {/* Primary CTA: View Works */}
         <Link
           href="#works"
+          onClick={handleScrollToWorks}
           className={cn(
             "group inline-flex items-center gap-2 px-5 py-2.5 rounded-full",
             "bg-text-primary text-surface-base text-[13px] font-mono",
