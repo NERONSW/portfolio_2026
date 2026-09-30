@@ -34,14 +34,8 @@ export const CONTACT_DATA: ContactData = {
     },
     {
       label: "LinkedIn",
-      href: "https://linkedin.com/in/nipuna-wasala",
+      href: "https://www.linkedin.com/in/nipuna-wasala-078494205/",
       username: "in/nipuna-wasala",
-      isExternal: true,
-    },
-    {
-      label: "Twitter/X",
-      href: "https://x.com/nipuna_wasala",
-      username: "@nipuna_wasala",
       isExternal: true,
     },
     {

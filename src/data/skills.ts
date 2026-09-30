@@ -8,7 +8,14 @@ export const TECH_CATEGORIES: TechCategory[] = [
   {
     title: "Frontend Systems",
     count: "06 items",
-    skills: ["React.js", "Next.js", "TypeScript", "JavaScript (ES6+)", "Tailwind CSS", "Vite"],
+    skills: [
+      "React.js",
+      "Next.js",
+      "TypeScript",
+      "JavaScript (ES6+)",
+      "Tailwind CSS",
+      "Vite",
+    ],
   },
   {
     title: "Backend & Runtime",
@@ -36,6 +43,7 @@ export const TOOLING_ITEMS = [
   "Claude Code",
   "Gemini",
   "Ollama",
+  "Google Stitch",
   "Git",
   "GitLab",
   "Bitbucket",

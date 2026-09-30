@@ -326,6 +326,11 @@
      - _Stack Pills:_ `Next.js`, `Tailwind CSS`, `Node.js`, `REST API`.
      - _Actions:_ `Inspect Live Demo ↗` + `🔒 Private Repo // NDA` (disabled/secure pill badge).
 
+- **Card Actions State Matrix (`isLive` flag):**
+  - `isLive: true` (+ `liveUrl` present): Primary solid button `Inspect Live Demo ↗` (`bg-text-primary text-canvas hover:bg-accent hover:text-white`, terracotta `ArrowUpRight`), opening in a new tab (`target="_blank" rel="noopener noreferrer"`).
+  - `isLive: false`: Non-clickable disabled pill badge `🔒 Internal App // Enterprise` — monospace `text-text-muted`, `border-border-hairline`, `bg-canvas/60`, `cursor-not-allowed select-none`, lock icon (visually matches `Private Repo // NDA`; no `href`/`target`).
+  - Secondary slot is independent of `isLive`: `🔒 Private Repo // NDA` (when `isPrivateRepo`) else `View Source Code ↗` (when `sourceUrl` present).
+
 ---
 
 ### 6.7 Section 05 // Academic Credentials
@@ -472,6 +477,7 @@ Rather than relying on drop shadows, the Warm Mocha Dark Theme establishes visua
      - _Inspect Live Demo ↗_: Solid Cream button (`bg-[#FDFBF7] text-[#181310] hover:bg-white`) with terracotta arrow (`#D97043`).
      - _View Source Code ↗_: Wireframe button (`bg-[#241E19] border border-[#382E27] text-[#FDFBF7] hover:border-[#C4B8A5]`) with terracotta arrow.
      - _🔒 Private Repo // NDA_: Restricted state with subtle inset `#1C1613`, border `#382E27`, muted text `#8C827A`, lock icon.
+     - _🔒 Internal App // Enterprise_: Disabled live-demo state (when `isLive: false`) — same restricted styling as `Private Repo // NDA` (inset `#1C1613`, hairline `#382E27` border, muted `#8C827A` text, lock icon), rendered as a non-interactive pill (`cursor-not-allowed`) instead of an anchor.
 
 7. **Section 05 // Academic Credentials (Dark)**:
    - 3 modular cards in `#241E19` with `#382E27` hairline outlines.

@@ -8,36 +8,11 @@ export interface FeaturedDeployment {
   stack: string[];
   liveUrl?: string;
   sourceUrl?: string;
+  isLive?: boolean;
   isPrivateRepo?: boolean;
 }
 
 export const FEATURED_DEPLOYMENTS: FeaturedDeployment[] = [
-  {
-    id: "abn-data-finder",
-    slug: "abn-data-finder",
-    indexTag: "01 INDEXER UTILITY",
-    badge: "99.98% Uptime",
-    title: "ABN Data Finder",
-    description:
-      "High-performance Australian Business Register search engine & lookup utility with instant fuzzy search caching and automated bulk indexer.",
-    stack: ["Go", "Next.js", "Redis", "PostgreSQL", "Meilisearch"],
-    liveUrl: "https://abn-finder.example.com",
-    sourceUrl: "https://github.com/example/abn-data-finder",
-    isPrivateRepo: false,
-  },
-  {
-    id: "restaurant-order-processor",
-    slug: "restaurant-order-processor",
-    indexTag: "02 REAL-TIME PLATFORM",
-    badge: "Operational Flow",
-    title: "Restaurant Order Processor",
-    description:
-      "Real-time order processing platform with custom tab routing, dynamic state management, and kitchen operational controls.",
-    stack: ["React", "TypeScript", "Tailwind CSS", "Node.js"],
-    liveUrl: "https://order-processor.example.com",
-    sourceUrl: "https://github.com/example/restaurant-order-processor",
-    isPrivateRepo: false,
-  },
   {
     id: "social-reach-analytics",
     slug: "social-reach-analytics",
@@ -45,9 +20,55 @@ export const FEATURED_DEPLOYMENTS: FeaturedDeployment[] = [
     badge: "Enterprise Client",
     title: "Social Reach Analytics",
     description:
-      "Social media intelligence platform providing engagement metrics, sentiment analysis, and campaign performance dashboards.",
-    stack: ["Next.js", "Tailwind CSS", "Node.js", "REST API"],
-    liveUrl: "https://social-reach.example.com",
+      "MarTech social listening and analytics platform providing customer engagement insights, audience sentiment analysis, social media monitoring, and campaign performance dashboards.",
+    stack: [
+      "Next.js",
+      "React",
+      "Tailwind CSS",
+      "Spring Boot",
+      "REST API",
+      "Python",
+    ],
+    liveUrl:
+      "https://marketplace.microsoft.com/en-us/product/saas/arimaclankaprivatelimited1602157023485.arimac_socialreach",
+    sourceUrl: "https://github.com/example/social-reach-analytics",
+    isLive: true,
+    isPrivateRepo: true,
+  },
+
+  {
+    id: "k1-healthcare-payments",
+    slug: "k1-healthcare-payments",
+    indexTag: "02 HEALTHCARE PLATFORM",
+    badge: "Enterprise Client",
+    title: "K1 Healthcare Payments",
+    description:
+      "Cloud-based healthcare payment collection and customer engagement platform for managing invoices, patient accounts, payment reminders, and installment plans.",
+    stack: ["React", "TypeScript", "Node.js", "MariaDB", "AWS", "REST API"],
+    liveUrl: "https://k1app.com/",
+    sourceUrl: "https://github.com/example/k1-healthcare-payments",
+    isLive: true,
+    isPrivateRepo: true,
+  },
+
+  {
+    id: "one-hrc-platform",
+    slug: "one-hrc-platform",
+    indexTag: "01 UNIFIED PLATFORM",
+    badge: "Internal Platform",
+    title: "One HRC",
+    description:
+      "Unified healthcare platform bringing multiple applications together with a scalable frontend architecture, role-based access control, enterprise authentication, and analytics dashboards.",
+    stack: [
+      "React",
+      "Vite",
+      "Tailwind CSS",
+      "Spring Boot",
+      "PostgreSQL",
+      "Keycloak",
+      "Power BI",
+    ],
+    isLive: false,
     isPrivateRepo: true,
   },
 ];
@@ -59,7 +80,12 @@ export interface Project {
   tagline: string;
   description: string;
   longDescription?: string;
-  category: "Full Stack" | "Frontend" | "AI & ML" | "Open Source" | "Design Engineering";
+  category:
+    | "Full Stack"
+    | "Frontend"
+    | "AI & ML"
+    | "Open Source"
+    | "Design Engineering";
   featured: boolean;
   year: number;
   tags: string[];

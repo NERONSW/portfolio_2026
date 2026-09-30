@@ -15,7 +15,7 @@ export interface HeroProps {
 export function Hero({
   className,
   projectCount = 3,
-  cvUrl = "/Nipuna_Wasala_CV.pdf",
+  cvUrl = "/Nipuna_Wasala_Resume.pdf",
 }: HeroProps) {
   const formattedCount = String(projectCount).padStart(2, "0");
 
@@ -98,8 +98,7 @@ export function Hero({
         {/* Secondary CTA: Download CV */}
         <a
           href={cvUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+          download="Nipuna_Wasala_Resume.pdf"
           id="heroCvBtn"
           className={cn(
             "group inline-flex items-center gap-2 px-5 py-2.5 rounded-full",

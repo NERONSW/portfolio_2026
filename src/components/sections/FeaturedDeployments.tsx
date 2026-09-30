@@ -16,7 +16,7 @@ export function FeaturedDeployments({ className }: FeaturedDeploymentsProps) {
       aria-label="Featured Deployments"
       className={cn(
         "relative py-12 sm:py-16 lg:py-20 border-b border-border-hairline",
-        className
+        className,
       )}
     >
       {/* Section Header: 04 // FEATURED DEPLOYMENTS (Left) | 03 Works Catalogued (Right) */}
@@ -88,7 +88,7 @@ export function FeaturedDeployments({ className }: FeaturedDeploymentsProps) {
 
             {/* Action Buttons: Full-width responsive button pair */}
             <div className="mt-6 flex flex-col gap-2 pt-4 border-t border-border-hairline/60">
-              {project.liveUrl && (
+              {project.isLive && project.liveUrl ? (
                 <a
                   href={project.liveUrl}
                   target="_blank"
@@ -100,18 +100,23 @@ export function FeaturedDeployments({ className }: FeaturedDeploymentsProps) {
                     "transition-all duration-200 select-none",
                     "hover:bg-accent hover:text-white",
                     "active:scale-[0.99]",
-                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
                   )}
                 >
                   <span>Inspect Live Demo</span>
                   <ArrowUpRight className="h-3.5 w-3.5 text-accent group-hover:text-white transition-colors duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </a>
+              ) : (
+                <div className="w-full h-11 px-4 rounded-md border border-border-hairline bg-canvas/60 font-mono text-xs text-text-muted inline-flex items-center justify-center gap-1.5 select-none cursor-not-allowed">
+                  <Lock className="h-3.5 w-3.5 text-text-muted" />
+                  <span>Private Instance</span>
+                </div>
               )}
 
               {project.isPrivateRepo ? (
                 <div className="w-full h-11 px-4 rounded-md border border-border-hairline bg-canvas/60 font-mono text-xs text-text-muted inline-flex items-center justify-center gap-1.5 select-none cursor-not-allowed">
                   <Lock className="h-3.5 w-3.5 text-text-muted" />
-                  <span>Private Repo // NDA</span>
+                  <span>Employer Repo</span>
                 </div>
               ) : (
                 project.sourceUrl && (
@@ -126,7 +131,7 @@ export function FeaturedDeployments({ className }: FeaturedDeploymentsProps) {
                       "transition-all duration-200 select-none",
                       "hover:border-border-subtle hover:bg-surface-elevated hover:text-text-primary",
                       "active:scale-[0.99]",
-                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
                     )}
                   >
                     <span>View Source Code</span>
