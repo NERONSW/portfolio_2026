@@ -16,8 +16,8 @@ export function TechnicalArsenal({ className }: TechnicalArsenalProps) {
       id="stack"
       aria-label="Technical Arsenal"
       className={cn(
-        "relative py-12 sm:py-16 lg:py-20 border-b border-border-hairline",
-        className
+        "relative scroll-mt-10 lg:scroll-mt-0 pt-16 sm:pt-20 lg:pt-20 pb-12 sm:pb-16 lg:pb-20 border-b border-border-hairline",
+        className,
       )}
     >
       {/* Section Header: 02 // TECHNICAL ARSENAL (Left) | Spec Sheet Badge (Right) */}

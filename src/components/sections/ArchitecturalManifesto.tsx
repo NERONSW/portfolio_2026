@@ -29,14 +29,16 @@ const STATS = [
   },
 ] as const;
 
-export function ArchitecturalManifesto({ className }: ArchitecturalManifestoProps) {
+export function ArchitecturalManifesto({
+  className,
+}: ArchitecturalManifestoProps) {
   return (
     <section
       id="about"
       aria-label="Architectural Manifesto"
       className={cn(
-        "relative py-12 sm:py-16 lg:py-20 border-b border-border-hairline",
-        className
+        "relative scroll-mt-10 lg:scroll-mt-0 pt-16 sm:pt-20 lg:pt-20 pb-12 sm:pb-16 lg:pb-20 border-b border-border-hairline",
+        className,
       )}
     >
       {/* Section Header: 01 // ARCHITECTURAL MANIFESTO (Left) | INVARIANTS Badge (Right) */}
@@ -77,7 +79,8 @@ export function ArchitecturalManifesto({ className }: ArchitecturalManifestoProp
 
             {/* Serif Italic Invariant Statement */}
             <blockquote className="font-serif italic text-text-primary text-lg sm:text-xl lg:text-2xl leading-snug font-normal">
-              Building systems centered on architectural clarity, strict data invariants, and defensive simplicity.
+              Building systems centered on architectural clarity, strict data
+              invariants, and defensive simplicity.
             </blockquote>
           </div>
 
@@ -99,10 +102,19 @@ export function ArchitecturalManifesto({ className }: ArchitecturalManifestoProp
             className="space-y-4 text-text-secondary text-sm sm:text-[15px] leading-relaxed"
           >
             <p>
-              Software engineering is fundamentally an exercise in governing state predictability and bounding complexity. I approach platform engineering with architectural rigor—establishing explicit domain boundaries, deterministic API contracts, and sub-50ms latency profiles while deliberately eradicating hidden assumptions across the execution lifecycle.
+              Software engineering is fundamentally an exercise in governing
+              state predictability and bounding complexity. I approach platform
+              engineering with architectural rigor—establishing explicit domain
+              boundaries, deterministic API contracts, and sub-50ms latency
+              profiles while deliberately eradicating hidden assumptions across
+              the execution lifecycle.
             </p>
             <p>
-              Having architected and maintained customer-facing platforms across FinTech, MarTech, and enterprise CMS environments, I engineer for resilient telemetry, defensible failure domains, and modular decoupled topologies that sustain zero degradation during high-concurrency traffic spikes.
+              Having architected and maintained customer-facing platforms across
+              FinTech, MarTech, and enterprise CMS environments, I engineer for
+              resilient telemetry, defensible failure domains, and modular
+              decoupled topologies that sustain zero degradation during
+              high-concurrency traffic spikes.
             </p>
           </motion.div>
 

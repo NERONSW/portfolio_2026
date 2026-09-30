@@ -15,7 +15,7 @@ export function FeaturedDeployments({ className }: FeaturedDeploymentsProps) {
       id="works"
       aria-label="Featured Deployments"
       className={cn(
-        "relative py-12 sm:py-16 lg:py-20 border-b border-border-hairline",
+        "relative scroll-mt-10 lg:scroll-mt-0 pt-16 sm:pt-20 lg:pt-20 pb-12 sm:pb-16 lg:pb-20 border-b border-border-hairline",
         className,
       )}
     >
@@ -103,7 +103,7 @@ export function FeaturedDeployments({ className }: FeaturedDeploymentsProps) {
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
                   )}
                 >
-                  <span>Inspect Live Demo</span>
+                  <span>View Product Portal</span>
                   <ArrowUpRight className="h-3.5 w-3.5 text-accent group-hover:text-white transition-colors duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </a>
               ) : (

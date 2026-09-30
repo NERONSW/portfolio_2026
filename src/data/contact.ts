@@ -17,7 +17,7 @@ export interface ContactData {
 }
 
 export const CONTACT_DATA: ContactData = {
-  email: "hello@nipuna.dev",
+  email: "nipunas98@gmail.com",
   heading: "Let's engineer resilient systems together.",
   subheading:
     "Currently open to senior engineering roles, high-impact distributed architecture contracts, and technical advisory in Melbourne or remote.",

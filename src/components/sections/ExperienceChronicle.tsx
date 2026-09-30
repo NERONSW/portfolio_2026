@@ -15,8 +15,8 @@ export function ExperienceChronicle({ className }: ExperienceChronicleProps) {
       id="experience"
       aria-label="Experience Chronicle"
       className={cn(
-        "relative py-12 sm:py-16 lg:py-20 border-b border-border-hairline",
-        className
+        "relative scroll-mt-10 lg:scroll-mt-0 pt-16 sm:pt-20 lg:pt-20 pb-12 sm:pb-16 lg:pb-20 border-b border-border-hairline",
+        className,
       )}
     >
       {/* Section Header: 03 // EXPERIENCE CHRONICLE (Left) | 2021 — 2025 Badge (Right) */}
@@ -51,7 +51,7 @@ export function ExperienceChronicle({ className }: ExperienceChronicleProps) {
             }}
             className={cn(
               "py-6 sm:py-8 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-start",
-              idx === 0 && "pt-4 sm:pt-6"
+              idx === 0 && "pt-4 sm:pt-6",
             )}
           >
             {/* Left Ledger Column (Desktop: 4 cols / Mobile: stacked header) */}
@@ -77,7 +77,10 @@ export function ExperienceChronicle({ className }: ExperienceChronicleProps) {
                 <h3 className="font-sans text-base sm:text-lg font-bold text-text-primary tracking-tight">
                   {exp.role}
                 </h3>
-                <span className="text-border-strong text-sm select-none" aria-hidden="true">
+                <span
+                  className="text-border-strong text-sm select-none"
+                  aria-hidden="true"
+                >
                   —
                 </span>
                 <span className="font-sans text-sm sm:text-base font-semibold text-accent">

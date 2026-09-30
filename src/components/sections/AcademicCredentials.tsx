@@ -15,8 +15,8 @@ export function AcademicCredentials({ className }: AcademicCredentialsProps) {
       id="academics"
       aria-label="Academic Credentials"
       className={cn(
-        "relative py-12 sm:py-16 lg:py-20 border-b border-border-hairline",
-        className
+        "relative scroll-mt-10 lg:scroll-mt-0 pt-16 sm:pt-20 lg:pt-20 pb-12 sm:pb-16 lg:pb-20 border-b border-border-hairline",
+        className,
       )}
     >
       {/* Section Header: 05 // ACADEMIC CREDENTIALS (Left) | Formal Qualifications Badge (Right) */}
@@ -78,8 +78,12 @@ export function AcademicCredentials({ className }: AcademicCredentialsProps) {
 
             {/* Institution & Timeline Footer */}
             <div className="mt-6 pt-4 border-t border-border-hairline/60 flex flex-col gap-1 font-mono text-xs text-text-secondary">
-              <span className="text-text-primary font-medium">{cred.institution}</span>
-              <span className="text-text-muted text-[11px]">{cred.timeline}</span>
+              <span className="text-text-primary font-medium">
+                {cred.institution}
+              </span>
+              <span className="text-text-muted text-[11px]">
+                {cred.timeline}
+              </span>
             </div>
           </motion.div>
         ))}

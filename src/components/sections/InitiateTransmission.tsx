@@ -55,7 +55,10 @@ export function InitiateTransmission({ className }: InitiateTransmissionProps) {
     <section
       id="contact"
       aria-label="Initiate Transmission"
-      className={cn("relative pt-12 sm:pt-16 lg:pt-20 pb-4", className)}
+      className={cn(
+        "relative scroll-mt-10 lg:scroll-mt-0 pt-16 sm:pt-20 lg:pt-20 pb-4",
+        className,
+      )}
     >
       {/* Section Header: 06 // INITIATE TRANSMISSION (Left) | Response Window Badge (Right) */}
       <div className="flex items-center justify-between pb-6 sm:pb-8">
