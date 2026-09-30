@@ -216,14 +216,14 @@ export function Navbar() {
                 <span className="font-mono text-[10px] uppercase tracking-wider text-text-muted">
                   // Navigation Index
                 </span>
-                <button
+                {/* <button
                   type="button"
                   onClick={closeMenu}
                   aria-label="Close navigation menu"
                   className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-border-hairline bg-surface-card text-text-secondary transition-colors hover:border-border-strong hover:bg-surface-hover hover:text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
                   <X className="h-4 w-4" />
-                </button>
+                </button> */}
               </div>
 
               <nav className="flex flex-col space-y-1">
@@ -263,7 +263,7 @@ export function Navbar() {
                   <span>Available · MEL, AU</span>
                 </div>
                 <a
-                  href="mailto:hello@nipuna.dev"
+                  href="nipunas98@gmail.com"
                   onClick={closeMenu}
                   className="text-[11px] text-accent hover:underline"
                 >
