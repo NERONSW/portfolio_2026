@@ -95,10 +95,10 @@ export function InitiateTransmission({ className }: InitiateTransmissionProps) {
         {/* CTA Action Controls (Top Row): Horizontal flex layout */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-8">
           {/* Primary Button (INITIATE DISPATCH ↗) */}
-          <div className="inline-flex items-stretch rounded-xl bg-accent text-white shadow-sm transition-all duration-200 hover:bg-accent-hover active:scale-[0.99] group">
+          <div className="w-full sm:w-auto inline-flex items-stretch rounded-xl overflow-hidden bg-accent text-white shadow-sm transition-all duration-200 hover:bg-accent-hover active:scale-[0.99] group">
             <a
               href={`mailto:${CONTACT_DATA.email}`}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 font-mono text-sm font-bold uppercase tracking-wider text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+              className="flex-1 whitespace-nowrap inline-flex items-center justify-center gap-2 px-6 py-3 font-mono text-sm font-bold uppercase tracking-wider text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
             >
               <span>INITIATE DISPATCH</span>
               <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -114,7 +114,7 @@ export function InitiateTransmission({ className }: InitiateTransmissionProps) {
                   : `Copy ${CONTACT_DATA.email} to clipboard`
               }
               title={`Copy ${CONTACT_DATA.email}`}
-              className="border-l border-white/20 px-3.5 flex items-center justify-center text-white/90 hover:text-white hover:bg-black/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded-r-xl"
+              className="shrink-0 w-12 border-l border-white/20 flex items-center justify-center text-white/90 hover:text-white hover:bg-black/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded-r-xl"
             >
               {copied ? (
                 <Check className="w-4 h-4 text-white" />
