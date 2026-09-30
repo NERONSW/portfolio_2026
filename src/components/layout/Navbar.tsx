@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
@@ -59,7 +58,7 @@ export function Navbar() {
         // Trigger when section intersects top-to-middle viewing zone
         rootMargin: "-20% 0px -55% 0px",
         threshold: 0,
-      }
+      },
     );
 
     sectionElements.forEach((el) => observer.observe(el));
@@ -69,22 +68,43 @@ export function Navbar() {
     };
   }, []);
 
-  // Unconditional Click Handler Trigger: always scrolls even if activeSection matches
+  // Lock body scroll while the mobile drawer is open; release it on close/unmount.
+  React.useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  // Auto-close when crossing into the desktop breakpoint, so the scroll lock never
+  // leaks onto a `md:hidden` drawer that is no longer rendered.
+  React.useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const onChange = (e: MediaQueryListEvent) => {
+      if (e.matches) setIsOpen(false);
+    };
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  // Unconditional Click Handler: closes drawer and always re-scrolls, even when
+  // the active section already matches the target.
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
-    targetId: string
+    targetId: string,
   ) => {
     e.preventDefault();
     setIsOpen(false);
 
-    const element = document.getElementById(targetId);
-    if (element) {
-      // Forceful smooth scroll trigger
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-      // Keep URL hash in sync without blocking re-trigger
-      window.history.pushState(null, "", `#${targetId}`);
-      setActiveSection(targetId);
-    }
+    // Defer scroll execution until body lock releases and drawer begins closing
+    setTimeout(() => {
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+        window.history.pushState(null, "", `#${targetId}`);
+        setActiveSection(targetId);
+      }
+    }, 100);
   };
 
   const closeMenu = () => setIsOpen(false);
@@ -95,7 +115,7 @@ export function Navbar() {
         "sticky top-0 z-50 w-full transition-all duration-300",
         scrolled
           ? "border-b border-border-hairline bg-surface-base/90 backdrop-blur-md"
-          : "border-b border-border-hairline/40 bg-surface-base/80 backdrop-blur-sm"
+          : "border-b border-border-hairline/40 bg-surface-base/80 backdrop-blur-sm",
       )}
     >
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -144,13 +164,13 @@ export function Navbar() {
                   "group flex items-center gap-1 font-mono text-xs uppercase tracking-wider transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
                   isActive
                     ? "text-text-primary font-semibold"
-                    : "text-text-secondary hover:text-text-primary"
+                    : "text-text-secondary hover:text-text-primary",
                 )}
               >
                 <span
                   className={cn(
                     "text-[10px] transition-colors",
-                    isActive ? "text-accent font-bold" : "text-accent"
+                    isActive ? "text-accent font-bold" : "text-accent",
                   )}
                 >
                   {link.num}
@@ -167,31 +187,43 @@ export function Navbar() {
           {/* Mobile Hamburger Toggle */}
           <button
             type="button"
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => setIsOpen((prev) => !prev)}
             aria-expanded={isOpen}
-            aria-label={isOpen ? "Close navigation drawer" : "Open navigation drawer"}
-            className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-border-hairline bg-surface-card text-text-secondary transition-colors hover:border-border-strong hover:bg-surface-hover hover:text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent md:hidden"
+            aria-controls="mobile-nav"
+            aria-label="Toggle navigation menu"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-border-hairline bg-surface-card text-text-secondary transition-colors hover:border-border-strong hover:bg-surface-hover hover:text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent md:hidden"
           >
             {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer (content-fit, no backdrop) */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
+            key="mobile-nav"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25, ease: [0.25, 1, 0.5, 1] }}
-            className="overflow-hidden border-b border-border-hairline bg-surface-base/95 backdrop-blur-xl md:hidden"
+            id="mobile-nav"
+            className="absolute inset-x-0 top-full overflow-hidden border-b border-border-hairline bg-surface-base md:hidden"
           >
-            <div className="px-4 py-4 sm:px-6">
-              {/* Drawer Subheader */}
-              <div className="mb-3 flex items-center justify-between border-b border-border-hairline/60 pb-2 font-mono text-[10px] uppercase tracking-wider text-text-muted">
-                <span>// Navigation Index</span>
-                <span>06 Sections</span>
+            <div className="px-4 pb-6 pt-4 sm:px-6">
+              {/* Drawer header: label + close control */}
+              <div className="mb-3 flex items-center justify-between border-b border-border-hairline/60 pb-2">
+                <span className="font-mono text-[10px] uppercase tracking-wider text-text-muted">
+                  // Navigation Index
+                </span>
+                <button
+                  type="button"
+                  onClick={closeMenu}
+                  aria-label="Close navigation menu"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-border-hairline bg-surface-card text-text-secondary transition-colors hover:border-border-strong hover:bg-surface-hover hover:text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                >
+                  <X className="h-4 w-4" />
+                </button>
               </div>
 
               <nav className="flex flex-col space-y-1">
@@ -207,7 +239,7 @@ export function Navbar() {
                         "group flex items-center justify-between rounded-md px-3 py-2.5 font-mono text-xs uppercase tracking-wider transition-colors hover:bg-surface-hover hover:text-text-primary",
                         isActive
                           ? "bg-surface-hover text-text-primary font-semibold"
-                          : "text-text-secondary"
+                          : "text-text-secondary",
                       )}
                     >
                       <div className="flex items-center gap-2.5">
@@ -232,6 +264,7 @@ export function Navbar() {
                 </div>
                 <a
                   href="mailto:hello@nipuna.dev"
+                  onClick={closeMenu}
                   className="text-[11px] text-accent hover:underline"
                 >
                   Direct Dispatch ↗
