@@ -1,26 +1,177 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@layer base {
+  :root {
+    /* -------------------------------------------------------------------------
+       Light Theme (Warm Paper / Architectural Wireframe)
+       DESIGN.md Section 2 Matrix
+       ------------------------------------------------------------------------- */
+    --background: #FAF7F2;
+    --foreground: #181310;
+
+    /* Primary Surface Matrix */
+    --bg-canvas: #FAF7F2;
+    --bg-surface: #F5F2EB;
+    --bg-surface-elevated: #EFEAE1;
+    --pill-bg: #FFFFFF;
+
+    /* Backward-compatibility Surface Tokens */
+    --surface-base: var(--bg-canvas);
+    --surface-card: var(--bg-surface);
+    --surface-subtle: var(--bg-surface);
+    --surface-muted: #EFEAE1;
+    --surface-hover: var(--bg-surface-elevated);
+    --surface-dim: #F0ECE1;
+    --surface-bright: #FFFFFF;
+
+    /* Borders & Outlines */
+    --border-hairline: #E8E1D5;
+    --border-subtle: #DCD4C7;
+    --border-strong: #C4B8A5;
+    --outline: #A89F91;
+    --outline-variant: #E8E1D5;
+
+    /* Typography Hierarchy */
+    --text-primary: #181310;
+    --text-secondary: #786F66;
+    --text-tertiary: #8C827A;
+    --text-muted: #A89F91;
+
+    /* Brand Accent Tokens (Burnt Terracotta) */
+    --accent: #D97043;
+    --accent-hover: #BF552B;
+    --accent-terracotta: #D97043;
+    --accent-terracotta-hover: #BF552B;
+    --accent-subtle: rgba(217, 112, 67, 0.12);
+    --accent-pulse: rgba(217, 112, 67, 0.2);
+
+    /* Status Signals */
+    --status-available: #10B981;
+    --status-pulse: rgba(16, 185, 129, 0.15);
+    --accent-emerald: #10B981;
+
+    /* Inverse Elements */
+    --inverse-surface: #181310;
+    --inverse-on-surface: #FDFBF7;
+  }
+
+  .dark {
+    /* -------------------------------------------------------------------------
+       Dark Theme (Warm Mocha / Espresso Dark)
+       DESIGN.md Section 2 & Section 7 Matrix
+       ------------------------------------------------------------------------- */
+    --background: #181310;
+    --foreground: #FDFBF7;
+
+    /* Primary Surface Matrix */
+    --bg-canvas: #181310;
+    --bg-surface: #241E19;
+    --bg-surface-elevated: #2D2520;
+    --pill-bg: #1C1613;
+
+    /* Backward-compatibility Surface Tokens */
+    --surface-base: var(--bg-canvas);
+    --surface-card: var(--bg-surface);
+    --surface-subtle: var(--bg-surface);
+    --surface-muted: #241E19;
+    --surface-hover: var(--bg-surface-elevated);
+    --surface-dim: #130F0C;
+    --surface-bright: #382E27;
+
+    /* Borders & Outlines */
+    --border-hairline: #382E27;
+    --border-subtle: #4A3E35;
+    --border-strong: #5A4C42;
+    --outline: #786F66;
+    --outline-variant: #382E27;
+
+    /* Typography Hierarchy */
+    --text-primary: #FDFBF7;
+    --text-secondary: #C4B8A5;
+    --text-tertiary: #A89F91;
+    --text-muted: #8C827A;
+
+    /* Brand Accent Tokens (Burnt Terracotta) */
+    --accent: #D97043;
+    --accent-hover: #E87E50;
+    --accent-terracotta: #D97043;
+    --accent-terracotta-hover: #E87E50;
+    --accent-subtle: rgba(217, 112, 67, 0.15);
+    --accent-pulse: rgba(217, 112, 67, 0.25);
+
+    /* Status Signals */
+    --status-available: #10B981;
+    --status-pulse: rgba(16, 185, 129, 0.2);
+    --accent-emerald: #10B981;
+
+    /* Inverse Elements */
+    --inverse-surface: #FDFBF7;
+    --inverse-on-surface: #181310;
+  }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  /* Canonical DESIGN.md Canvas & Surfaces */
+  --color-canvas: var(--bg-canvas);
+  --color-surface: var(--bg-surface);
+  --color-surface-elevated: var(--bg-surface-elevated);
+  --color-pill-bg: var(--pill-bg);
+
+  /* Backward-compatible Surface utilities */
+  --color-surface-base: var(--surface-base);
+  --color-surface-card: var(--surface-card);
+  --color-surface-subtle: var(--surface-subtle);
+  --color-surface-muted: var(--surface-muted);
+  --color-surface-hover: var(--surface-hover);
+  --color-surface-dim: var(--surface-dim);
+  --color-surface-bright: var(--surface-bright);
+
+  /* Wireframe Hairline & Subtle Borders */
+  --color-border-hairline: var(--border-hairline);
+  --color-hairline: var(--border-hairline);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+
+  /* Typography Hierarchy */
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-text-muted: var(--text-muted);
+
+  /* Canonical Accent Tokens */
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-terracotta: var(--accent-terracotta);
+  --color-accent-terracotta-hover: var(--accent-terracotta-hover);
+  --color-accent-subtle: var(--accent-subtle);
+  --color-accent-pulse: var(--accent-pulse);
+  --color-accent-emerald: var(--accent-emerald);
+
+  /* Status Signals */
+  --color-status-available: var(--status-available);
+  --color-status-pulse: var(--status-pulse);
+
+  /* Inverse */
+  --color-inverse-surface: var(--inverse-surface);
+  --color-inverse-on-surface: var(--inverse-on-surface);
+
+  /* Fonts */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Newsreader", "Playfair Display", Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: var(--font-jetbrains-mono), var(--font-geist-mono), ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
 }
