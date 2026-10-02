@@ -19,7 +19,7 @@ export const EXPERIENCES: ExperienceChronicleItem[] = [
     bullets: [
       "Developed end-to-end features for K1, a cloud-based healthcare payment collection and customer engagement platform handling invoices, patient accounts, payment reminders, and installment plans.",
       "Built RESTful APIs using Node.js and TypeScript and integrated them with React and TypeScript frontend applications, using MariaDB for data management.",
-      "Implemented SMS and email reminders, automated data-processing workflows using Cron jobs, and installment payment functionality to support payment collection and customer engagement.",
+      "Optimised existing SMS and email reminder workflows, Cron-based data-processing jobs, and installment payment functionality to improve the reliability and efficiency of payment collection and customer engagement processes.",
       "Worked across a high-volume healthcare platform handling large volumes of invoice and patient data, with development and bug fixes following HIPAA requirements.",
       "Contributed to cloud-based deployments, CI/CD automation, containerisation, and release improvements as part of the platform's ongoing engineering lifecycle.",
       "Collaborated with Product, Business, and Engineering teams to translate requirements into scalable platform features and resolve technical issues.",
