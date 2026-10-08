@@ -3,13 +3,15 @@
 import { motion } from "framer-motion";
 import { History } from "lucide-react";
 import { EXPERIENCES } from "@/data/experience";
-import { cn } from "@/lib/utils";
+import { calculateTenure, cn, formatPeriod } from "@/lib/utils";
 
 export interface ExperienceChronicleProps {
   className?: string;
 }
 
 export function ExperienceChronicle({ className }: ExperienceChronicleProps) {
+  const currentYear = new Date().getFullYear();
+
   return (
     <section
       id="experience"
@@ -32,7 +34,7 @@ export function ExperienceChronicle({ className }: ExperienceChronicleProps) {
 
         <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded border border-accent/20 bg-accent/10 text-accent font-mono text-[11px] uppercase tracking-wider">
           <History className="w-3 h-3 text-accent" />
-          <span>2021 — 2025</span>
+          <span suppressHydrationWarning>2021 — {currentYear}</span>
         </div>
       </div>
 
@@ -59,10 +61,13 @@ export function ExperienceChronicle({ className }: ExperienceChronicleProps) {
               {/* Period & Tenure */}
               <div className="flex flex-wrap items-center justify-between md:flex-col md:items-start gap-1">
                 <span className="font-mono text-xs font-semibold tracking-wider text-accent uppercase">
-                  {exp.period}
+                  {formatPeriod(exp.startDate, exp.endDate)}
                 </span>
-                <span className="font-mono text-[11px] text-text-muted">
-                  {exp.tenure}
+                <span
+                  className="font-mono text-[11px] text-text-muted"
+                  suppressHydrationWarning
+                >
+                  {calculateTenure(exp.startDate, exp.endDate)}
                 </span>
               </div>
               <span className="font-mono text-[11px] text-text-secondary mt-0.5">
