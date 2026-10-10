@@ -32,7 +32,7 @@ export const EXPERIENCES: ExperienceChronicleItem[] = [
     company: "HRC Labs (K1)",
     startDate: "2023-06",
     endDate: "2025-07",
-    location: "Melbourne, AU",
+    location: "Colombo, SL",
     bullets: [
       "Developed end-to-end features for K1, a cloud-based healthcare payment collection and customer engagement platform handling invoices, patient accounts, payment reminders, and installment plans.",
       "Built RESTful APIs using Node.js and TypeScript and integrated them with React and TypeScript frontend applications, using MariaDB for data management.",
@@ -54,7 +54,7 @@ export const EXPERIENCES: ExperienceChronicleItem[] = [
     company: "Arimac",
     startDate: "2022-04",
     endDate: "2023-06",
-    location: "Digital Innovation",
+    location: "Colombo, SL",
     bullets: [
       "Developed a customer-facing Content Management System for Sampath Bank PLC using React.js and Strapi as a headless CMS.",
       "Built reusable React components and REST API integrations between the frontend and backend services to support content management and publishing workflows.",
@@ -71,7 +71,7 @@ export const EXPERIENCES: ExperienceChronicleItem[] = [
     company: "Arimac",
     startDate: "2021-06",
     endDate: "2022-04",
-    location: "Enterprise Services",
+    location: "Colombo, SL",
     bullets: [
       "Developed and maintained Social Reach, a MarTech social listening and analytics platform providing insights into customer engagement, online conversations, audience sentiment, and campaign performance.",
       "Developed the initial platform using React.js and later led a major UI revamp using Next.js and Tailwind CSS, rebuilding the interface from scratch to improve usability, consistency, and frontend performance.",
