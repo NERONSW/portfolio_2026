@@ -7,7 +7,7 @@ export interface TechCategory {
 export const TECH_CATEGORIES: TechCategory[] = [
   {
     title: "Frontend Systems",
-    count: "06 items",
+    count: "08 items",
     skills: [
       "React.js",
       "Next.js",
@@ -15,6 +15,8 @@ export const TECH_CATEGORIES: TechCategory[] = [
       "JavaScript (ES6+)",
       "Tailwind CSS",
       "Vite",
+      "Redux",
+      "Zustand",
     ],
   },
   {
@@ -30,12 +32,7 @@ export const TECH_CATEGORIES: TechCategory[] = [
   {
     title: "Cloud & DevOps",
     count: "04 items",
-    skills: [
-      "AWS (Lambda, S3, API Gateway, DynamoDB)",
-      "GitHub Actions",
-      "Jenkins",
-      "CI/CD",
-    ],
+    skills: ["AWS Ecosystem", "GitHub Actions", "Jenkins", "CI/CD"],
   },
 ];
 
