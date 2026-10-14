@@ -45,18 +45,17 @@ Built with Next.js 16, TypeScript, Tailwind CSS v4, and Framer Motion, featuring
 ### Installation
 
 1. **Clone the repository:**
+
    ```bash
    git clone [https://github.com/NERONSW/portfolio_2026.git](https://github.com/NERONSW/portfolio_2026.git)
    cd portfolio_2026
    ```
 
-````
-
 2. **Install dependencies using pnpm:**
+
 ```bash
 pnpm install
-
-````
+```
 
 3. **Run the local development server:**
 
