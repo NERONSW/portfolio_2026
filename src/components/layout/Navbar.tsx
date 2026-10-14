@@ -145,8 +145,7 @@ export function Navbar() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-status-available opacity-60" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-status-available" />
             </span>
-            <span className="text-text-secondary">Available for work</span>
-            <span className="text-text-muted">— Melbourne, VIC</span>
+            <span className="text-text-secondary">Open to Opportunities</span>
           </div>
         </div>
 
@@ -260,7 +259,7 @@ export function Navbar() {
               <div className="mt-4 flex items-center justify-between border-t border-border-hairline/60 pt-3 font-mono text-[11px] text-text-tertiary">
                 <div className="flex items-center gap-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-status-available" />
-                  <span>Available · MEL, AU</span>
+                  <span>Open to Opportunities</span>
                 </div>
                 <a
                   href="nipunas98@gmail.com"

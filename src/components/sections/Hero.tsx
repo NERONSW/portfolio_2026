@@ -127,7 +127,7 @@ export function Hero({
 
         {/* Working Rights Annotation */}
         <span className="font-mono text-[11px] text-text-tertiary self-center pl-2 hidden sm:inline">
-          Full Working Rights in Australia | MEL, AU
+          Full Working Rights in Australia
         </span>
       </motion.div>
     </section>
