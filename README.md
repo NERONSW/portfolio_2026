@@ -46,10 +46,13 @@ Built with Next.js 16, TypeScript, Tailwind CSS v4, and Framer Motion, featuring
 
 1. **Clone the repository:**
 
-   ```bash
-   git clone [https://github.com/NERONSW/portfolio_2026.git](https://github.com/NERONSW/portfolio_2026.git)
-   cd portfolio_2026
-   ```
+```bash
+git clone [https://github.com/NERONSW/portfolio_2026.git](https://github.com/NERONSW/portfolio_2026.git)
+```
+
+```bash
+cd portfolio_2026
+```
 
 2. **Install dependencies using pnpm:**
 
@@ -101,7 +104,3 @@ For complete details regarding typography choices, color tokens, layout grids, a
 Designed and developed by **Nipuna Wasala**.
 
 Code is available under the [MIT License](https://www.google.com/search?q=./LICENSE).
-
-```
-
-```
